@@ -37,7 +37,7 @@ const onSubmit =async ()=>{
     else{
       let res = await registrationRequest(fName,lName,email,password,photo);
       if(res === true){
-          navigate("/");
+          navigate("/login");
       }
     }
 }

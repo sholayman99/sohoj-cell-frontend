@@ -4,9 +4,11 @@ const Search = lazy(()=>import("../components/home/Search.jsx"))
 
 const HomePage = () => {
     return (
-        <Suspense fallback={LazyMotion}>
-            <Search />
-        </Suspense>
+      <>
+          <Suspense fallback={LazyMotion}>
+              <Search />
+          </Suspense>
+      </>
     );
 };
 

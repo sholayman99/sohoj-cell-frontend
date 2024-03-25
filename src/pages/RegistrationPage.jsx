@@ -3,9 +3,11 @@ import LazyMotion from "../layout/LazyMotion.jsx";
 const Registration = lazy(()=>import("../components/authentication/Registration.jsx"))
 const RegistrationPage = () => {
     return (
-        <Suspense fallback={LazyMotion}>
-           <Registration />
-        </Suspense>
+        <>
+            <Suspense fallback={LazyMotion}>
+                <Registration />
+            </Suspense>
+        </>
     );
 };
 

@@ -12,11 +12,11 @@
     background-color: rgba(255, 255, 255, 0.2);
 }
 .Line-Progress .indeterminate {
-    background-color: #029b44;
+    background-color: #FFC800;
 }
 .Line-Progress .indeterminate:before {
-       z-index: -100 !important;
-        height: 3px;
+        z-index: -100 !important;
+        height: 6px;
         content: "";
         position: fixed;
         background-color: inherit;
@@ -29,7 +29,7 @@
 }
 .Line-Progress .indeterminate:after {
         z-index: -100 !important;
-        height: 3px;
+        height: 6px;
         content: "";
         position: fixed;
         background-color: inherit;
