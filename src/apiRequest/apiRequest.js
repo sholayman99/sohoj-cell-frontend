@@ -1,6 +1,7 @@
 import axios from "axios";
 import store from "../redux/store/store.js";
 import {hideLoader, showLoader} from "../redux/state-slices/settings-slice.js";
+import {setCategory} from "../redux/state-slices/category-slice.js";
 import {errorMsg, successMsg} from "../utility/formHelper.js";
 import {setRole, setToken, setUserInfo} from "../utility/sessionHelper.js";
 
@@ -56,4 +57,20 @@ export async function loginRequest(email,password){
          return false
     }
 
+}
+
+
+export async function categoryListRequest(){
+    store.dispatch(showLoader());
+    try {
+        let res = await axios.get('/categoryList');
+        store.dispatch(hideLoader());
+        if(res.data['status']==='success'){
+            store.dispatch(setCategory(res.data['data']));
+        }
+    }
+    catch (e) {
+        store.dispatch(hideLoader());
+        errorMsg("Something went wrong!");
+    }
 }
