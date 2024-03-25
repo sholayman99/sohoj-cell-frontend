@@ -5,12 +5,12 @@ import {FaChevronCircleRight, FaPlusCircle} from "react-icons/fa";
 
 const OpportunityCard = () => {
     return (
-        <main className={"px-20"}>
-            <section className={"flex items-center justify-center gap-10 shadow-md p-5 rounded-lg"}>
-                <div className={"flex max-w-xl w-full items-center"}>
-                    <img className={"w-56"} src={money} alt={"Money"}/>
+        <main className={"lg:p-20 p-5"}>
+            <section className={"flex flex-col lg:flex-row items-center justify-center gap-10 shadow-md p-5 rounded-lg"}>
+                <div className={"flex max-w-xl w-full items-start"}>
+                    <img className={"lg:w-56 w-28 md:w-56"} src={money} alt={"Money"}/>
                     <div className={"flex flex-col gap-3"}>
-                        <h2 className={"text-xl font-semibold"}>Start making money!</h2>
+                        <h2 className={"lg:text-xl md:text-xl text-lg font-semibold"}>Start making money!</h2>
                         <p className={"text-gray-600"}>Do you have something to sell?
                             Post your first ad and start making money!</p>
                         <button className={"btn btn-secondary rounded-full w-52 text-orange-800"}><FaPlusCircle/>Post your ads for free

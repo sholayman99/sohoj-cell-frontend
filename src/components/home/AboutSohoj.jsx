@@ -14,7 +14,7 @@ const AboutSohoj = () => {
     }
 
     return (
-        <main className={"p-20"}>
+        <main className={"lg:p-20 md:p-10 p-5"}>
             <h3 className={"text-[18px] text-gray-600 mb-5 font-semibold"}>About Bikroy, The Largest Marketplace in Bangladesh!</h3>
             {
                 showFull ? (
