@@ -6,7 +6,7 @@ import {FaChevronCircleRight, FaPlusCircle} from "react-icons/fa";
 const OpportunityCard = () => {
     return (
         <main className={"px-20"}>
-            <section className={"flex items-center justify-center gap-10 shadow-2xl p-5 rounded-lg"}>
+            <section className={"flex items-center justify-center gap-10 shadow-md p-5 rounded-lg"}>
                 <div className={"flex max-w-xl w-full items-center"}>
                     <img className={"w-56"} src={money} alt={"Money"}/>
                     <div className={"flex flex-col gap-3"}>
