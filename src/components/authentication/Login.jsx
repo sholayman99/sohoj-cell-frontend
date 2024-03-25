@@ -26,13 +26,6 @@ const Login = () => {
                         <h3 className={"text-4xl text-info"}><PiCardsFill/></h3>
                         <h3>View and manage your ads at your convenience. </h3>
                     </div>
-                    <div>
-                        <div className="divider divider-primary">OR</div>
-                        <div className={"flex hover:text-info items-center justify-center gap-2"}>
-                            <span className={"text-xl"}><FaHome/></span>
-                            <Link className={"text-lg hover:underline"} to={"/"}> Return Home</Link>
-                        </div>
-                    </div>
                 </section>
 
                 <section className={"w-full max-w-sm"}>
@@ -57,10 +50,18 @@ const Login = () => {
                         <div className="form-control mt-6">
                             <button className="btn btn-primary text-base-100">Login</button>
                         </div>
-                        <p className={"mt-3"}>
-                            By <Link className={"text-info font-semibold"} to={"/registration"}>signing up</Link> for an account you agree to our
-                        </p>
-                        <Link className={"text-info font-semibold"} to={"/"}> Terms and Conditions</Link>
+                        <div className={"flex items-center justify-center  flex-col mt-8 gap-2"}>
+                            <p>
+                                By <Link className={"text-info font-semibold"} to={"/registration"}>sign up </Link>
+                                 you agree to our <Link className={"text-info font-semibold"} to={"/"}> Terms and
+                                Conditions</Link>
+                            </p>
+                            <div className={"divider"}></div>
+                            <div className={"flex hover:text-info items-center justify-center gap-2"}>
+                                <span className={"text-xl"}><FaHome/></span>
+                                <Link className={"text-lg hover:underline"} to={"/"}> Return Home</Link>
+                            </div>
+                        </div>
                     </form>
                 </section>
             </div>
