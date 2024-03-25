@@ -11,7 +11,7 @@ const Login = () => {
                 <section className={"hidden lg:flex flex-col gap-5"}>
                     <div>
                         <h3 className={"text-xl text-[#444141FF] font-semibold"}>Welcome to SohojCell</h3>
-                        <p className={"text-gray-500"}>Login to manage Your account</p>
+                        <p className={"text-gray-500 mt-3"}>Login to manage your account.</p>
                     </div>
 
                     <div className={"flex items-center text-gray-500 gap-2 mt-5"}>
@@ -25,6 +25,13 @@ const Login = () => {
                     <div className={"flex items-center text-gray-500 gap-2 mt-2"}>
                         <h3 className={"text-4xl text-info"}><PiCardsFill/></h3>
                         <h3>View and manage your ads at your convenience. </h3>
+                    </div>
+                    <div>
+                        <div className="divider divider-primary">OR</div>
+                        <div className={"flex hover:text-info items-center justify-center gap-2"}>
+                            <span className={"text-xl"}><FaHome/></span>
+                            <Link className={"text-lg hover:underline"} to={"/"}> Return Home</Link>
+                        </div>
                     </div>
                 </section>
 
@@ -54,11 +61,6 @@ const Login = () => {
                             By <Link className={"text-info font-semibold"} to={"/registration"}>signing up</Link> for an account you agree to our
                         </p>
                         <Link className={"text-info font-semibold"} to={"/"}> Terms and Conditions</Link>
-                        <div className="divider divider-neutral"></div>
-                        <div className={"flex justify-center hover:text-info items-center gap-2"}>
-                            <span className={"text-xl"}><FaHome/></span>
-                            <Link className={"text-lg hover:underline"} to={"/"}> Return Home</Link>
-                        </div>
                     </form>
                 </section>
             </div>
