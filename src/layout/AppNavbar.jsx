@@ -34,7 +34,7 @@ const AppNavbar = () => {
                     </ul>
                 </details>
                 <Link to={"/"} className="text-3xl text-secondary font-normal"><span
-                    className={"font-bold text-base-100"}>Sohoj</span>Cell</Link>
+                    className={"font-bold text-base-100"}>Sohoj</span>sell</Link>
             </div>
             <div className="hidden lg:flex navbar-end">
                 <ul className="menu menu-horizontal px-1 gap-8 items-center">

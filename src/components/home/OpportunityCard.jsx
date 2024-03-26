@@ -19,7 +19,7 @@ const OpportunityCard = () => {
                 </div>
                 <div className="divider lg:divider-horizontal"></div>
                 <div className={"flex flex-col gap-4 max-w-sm w-full  "}>
-                    <h2 className={"text-2xl text-info font-bold"}>SohojCell <span className={"text-lg font-semibold"}>JOBS</span></h2>
+                    <h2 className={"text-2xl text-info font-bold"}>Sohojsell <span className={"text-lg font-semibold"}>JOBS</span></h2>
                     <p className={"text-gray-600"}>Looking to hire or get hired in Bangladesh ?
                         Get access to 800k+ CVs or browse through 800+ job vacancies!</p>
                     <button className={"btn btn-info rounded-full w-52 text-base-100"}>
