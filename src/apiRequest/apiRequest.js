@@ -4,7 +4,7 @@ import {hideLoader, showLoader} from "../redux/state-slices/settings-slice.js";
 import {setCategory, setDistrict, setDivision} from "../redux/state-slices/category-slice.js";
 import {errorMsg, successMsg} from "../utility/formHelper.js";
 import {setRole, setToken, setUserInfo} from "../utility/sessionHelper.js";
-import {setAdsByCategory} from "../redux/state-slices/ad-slice.js";
+import {setAdsByCategory, setAllAds} from "../redux/state-slices/ad-slice.js";
 import {setSliders} from "../redux/state-slices/slider-slice.js";
 
 
@@ -138,6 +138,26 @@ export async function sliderListRequest(){
        else{
            errorMsg("Server error!")
        }
+    }
+    catch (e) {
+        store.dispatch(hideLoader());
+        errorMsg("Something went wrong!")
+    }
+}
+
+
+
+export async function allAdsRequest(){
+    store.dispatch(showLoader());
+    try {
+        let res = await axios.get('/adList');
+        store.dispatch(hideLoader());
+        if(res.data['status'] === 'success'){
+            store.dispatch(setAllAds(res.data['data']));
+        }
+        else{
+            errorMsg("Server error!")
+        }
     }
     catch (e) {
         store.dispatch(hideLoader());

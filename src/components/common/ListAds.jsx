@@ -7,7 +7,6 @@ import {
     categoryListRequest,
     districtListRequest,
     divisionListRequest,
-    listByCategoryRequest
 } from "../../apiRequest/apiRequest.js";
 import {Link} from "react-router-dom";
 

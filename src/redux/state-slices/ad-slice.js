@@ -9,9 +9,13 @@ export const adSlice = createSlice({
     reducers:{
         setAdsByCategory:(state,action)=>{
             state.listAd = action.payload
+        },
+
+        setAllAds:(state,action)=>{
+            state.listAd = action.payload
         }
     }
 });
 
-export const {setAdsByCategory} = adSlice.actions;
+export const {setAdsByCategory,setAllAds} = adSlice.actions;
 export default adSlice.reducer;
