@@ -7,7 +7,7 @@ const AppNavbar = () => {
     const navList = (
         <>
             <li>
-                <Link to={"/"} className={" text-[16px] font-semibold"}>All ads</Link>
+                <Link to={"/all-ads"} className={" text-[16px] font-semibold"}>All ads</Link>
             </li>
             <li>
                 {
@@ -17,7 +17,7 @@ const AppNavbar = () => {
                 }
             </li>
             <li>
-                <Link  className={"btn btn-secondary  text-[16px] uppercase text-orange-800"} to={"/login"}> Post Your Add</Link>
+                <Link  className={"btn btn-secondary  text-[16px] uppercase text-orange-800"} to={"/create-ad"}> Post Your Add</Link>
             </li>
         </>
     );

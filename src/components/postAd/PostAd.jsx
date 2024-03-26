@@ -1,6 +1,7 @@
 import React from 'react';
 
-const PostYourAdd = () => {
+
+const PostAd = () => {
     return (
         <div>
             
@@ -8,4 +9,4 @@ const PostYourAdd = () => {
     );
 };
 
-export default PostYourAdd;
+export default PostAd;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const AllAds = () => {
+const AllAdsPage = () => {
     return (
         <div>
             
@@ -8,4 +8,4 @@ const AllAds = () => {
     );
 };
 
-export default AllAds;
+export default AllAdsPage;

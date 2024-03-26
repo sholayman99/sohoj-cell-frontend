@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import {categoryListRequest} from "../../apiRequest/apiRequest.js";
 import {useSelector} from "react-redux";
+import {Link} from "react-router-dom";
 
 const CategoryList = () => {
 
@@ -12,8 +13,6 @@ const CategoryList = () => {
 
     const categoryList = useSelector((state)=>state.category.categoryList);
 
-    console.log(categoryList);
-
     return (
         <main className={"lg:px-20 md:p-10 p-5 lg:min-h-screen md:min-h-[60vh] flex items-center justify-center"}>
             <section className={"w-full flex flex-col gap-5"}>
@@ -22,10 +21,10 @@ const CategoryList = () => {
                    {
                        categoryList.map((item,i)=>{
                            return (
-                               <div key={i} className={"flex items-center gap-2"}>
+                               <Link to={`/list-by-category/${item['_id']}`} key={i} className={"flex items-center gap-2"}>
                                    <img className={"w-12"} src={item['image']} alt={item['categoryName']}/>
                                    <h3 className={"font-light md:text-[17px]  lg:text-[17px]"}>{item['categoryName']}</h3>
-                               </div>
+                               </Link>
                            )
                        })
                    }
