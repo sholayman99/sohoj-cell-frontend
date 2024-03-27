@@ -3,10 +3,12 @@ import store from "../redux/store/store.js";
 import {hideLoader, showLoader} from "../redux/state-slices/settings-slice.js";
 import {setCategory, setDistrict, setDivision} from "../redux/state-slices/category-slice.js";
 import {errorMsg, successMsg} from "../utility/formHelper.js";
-import {setRole, setToken, setUserInfo} from "../utility/sessionHelper.js";
+import {getToken, setRole, setToken, setUserInfo} from "../utility/sessionHelper.js";
 import {setAdsByCategory, setAllAds} from "../redux/state-slices/ad-slice.js";
 import {setSliders} from "../redux/state-slices/slider-slice.js";
+import {setInfo} from "../redux/state-slices/user-slice.js";
 
+let axiosHeader = {headers:{'token':getToken()}};
 
 export async function registrationRequest(fName,lName,email,password,photo){
     store.dispatch(showLoader());
@@ -154,6 +156,25 @@ export async function allAdsRequest(){
         store.dispatch(hideLoader());
         if(res.data['status'] === 'success'){
             store.dispatch(setAllAds(res.data['data']));
+        }
+        else{
+            errorMsg("Server error!")
+        }
+    }
+    catch (e) {
+        store.dispatch(hideLoader());
+        errorMsg("Something went wrong!")
+    }
+}
+
+
+export async function userInfoRequest(){
+    store.dispatch(showLoader());
+    try {
+        let res = await axios.get('/info',axiosHeader);
+        store.dispatch(hideLoader());
+        if(res.data['status'] === 'success'){
+            store.dispatch(setInfo(res.data['data'][0]));
         }
         else{
             errorMsg("Server error!")
