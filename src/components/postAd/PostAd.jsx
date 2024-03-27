@@ -11,19 +11,34 @@ const PostAd = () => {
     const userInfo = useSelector((state)=>state.user.info);
 
 
-    const [selectedImage, setSelectedImage] = useState(null);
-
-    const handleImageChange = (e) => {
-        const file = e.target.files[0];
-        setSelectedImage(file);
-    };
-
     const [isChecked, setIsChecked] = useState(false);
+    let [postData,setPostData] = useState({
+        productName:"",price:"",categoryID:"",districtID:"",divisionID:"",condition:"Used",authenticity:"Original",features:"",brandName:"",model:"",
+        description:"",negotiable:"No",edition:""
+
+    })
+
+    const inputOnchange = (key,value)=>{
+        setPostData((data)=>({
+            ...data,
+            [key]:value
+        }))
+    }
 
     // Function to handle checkbox change
     const handleCheckboxChange = () => {
         setIsChecked(!isChecked);
     };
+
+    const onRadioChange =(e)=>{
+        setCondition(e.target.value);
+        setAuthenticity(e.target.value);
+        setNegotiable(e.target.value);
+    }
+
+    const onPost = async ()=>{
+       console.log(postData.categoryID,postData.condition)
+    }
 
     return (
         <main className={"bg-base-200 lg:p-20 mx-auto"}>
@@ -31,7 +46,7 @@ const PostAd = () => {
                 <section className={"flex items-start justify-between "}>
                     <h2 className={"text-2xl font-semibold"}>Fill in the details</h2>
                     <div className={"grid grid-cols-3 gap-10 w-full max-w-3xl"}>
-                        <select className="select select-info w-full max-w-xs">
+                        <select onChange={(e)=>inputOnchange("categoryID",e.target.value)} className="select select-info w-full max-w-xs">
                             <option disabled selected>Select Category</option>
                             {
                                 categoryList.map((item, i) => {
@@ -41,22 +56,22 @@ const PostAd = () => {
                                 })
                             }
                         </select>
-                        <select className="select select-info w-full max-w-xs">
+                        <select onChange={(e)=>inputOnchange("districtID",e.target.value)} className="select select-info w-full max-w-xs">
                             <option disabled selected>Select District</option>
                             {
                                 districtList.map((item, i) => {
                                     return (
-                                        <option value={item['_id']} key={i}>{item['district']}</option>
+                                        <option  value={item['_id']} key={i}>{item['district']}</option>
                                     )
                                 })
                             }
                         </select>
-                        <select className="select select-info w-full max-w-xs">
+                        <select onChange={(e)=>inputOnchange("divisionID",e.target.value)} className="select select-info w-full max-w-xs">
                             <option disabled selected>Select Division</option>
                             {
                                 divisionList.map((item, i) => {
                                     return (
-                                        <option value={item['_id']} key={i}>{item['division']}</option>
+                                        <option  value={item['_id']} key={i}>{item['division']}</option>
                                     )
                                 })
                             }
@@ -71,7 +86,7 @@ const PostAd = () => {
                         <div>
                             <span>Product Name</span>
                             <div className={"w-full grid grid-cols-1 mt-2"}>
-                                <input type="text" placeholder="Write your product name"
+                                <input onChange={(e)=>inputOnchange("productName",e.target.value)} type="text" placeholder="Write your product name"
                                        className="input input-bordered input-accent w-full"/>
                             </div>
                         </div>
@@ -79,8 +94,9 @@ const PostAd = () => {
                         <div>
                             <span>Price(Tk)</span>
                             <div className={"w-full grid grid-cols-1 mt-2"}>
-                                <input type="number" placeholder="Choose price"
-                                       className="input input-bordered input-accent w-full"/>
+                                <input onChange={(e)=>inputOnchange("price",e.target.value)} type="number" placeholder="Choose price"
+                                       className="input input-bordered input-accent w-full"
+                                />
                             </div>
                         </div>
                         {/*condition*/}
@@ -89,11 +105,14 @@ const PostAd = () => {
                             <div className={"w-full grid grid-cols-2 gap-[20rem]  mt-2"}>
                                 <label className={"inline-flex items-center gap-1"}>
                                     <input type="radio" name="Used" className="radio radio-accent" value={"Used"}
-                                           checked/>
+                                           onChange={(e)=>inputOnchange("condition",e.target.value)}
+                                           checked={postData.condition === "Used"}/>
                                     <span>Used</span>
                                 </label>
                                 <label className={"inline-flex items-center gap-1"}>
-                                    <input type="radio" name="New" className="radio radio-accent" value={"New"}/>
+                                    <input type="radio" name="New" className="radio radio-accent" value={"New"}
+                                           onChange={(e)=>inputOnchange("condition",e.target.value)}
+                                           checked={postData.condition === "New"}/>
                                     <span>New</span>
                                 </label>
                             </div>
@@ -104,11 +123,13 @@ const PostAd = () => {
                             <div className={"w-full grid grid-cols-2 gap-[20rem]  mt-2"}>
                                 <label className={"inline-flex items-center gap-1"}>
                                     <input type="radio" name="Original" className="radio radio-accent"
+                                           checked={postData.authenticity === "Original"} onChange={(e)=>inputOnchange("authenticity",e.target.value)}
                                            value={"Original"}/>
                                     <span>Original</span>
                                 </label>
                                 <label className={"inline-flex items-center gap-1"}>
                                     <input type="radio" name="Refurbished" className="radio radio-accent"
+                                           checked={postData.authenticity === "Refurbished"} onChange={(e)=>inputOnchange("authenticity",e.target.value)}
                                            value={"Refurbished"}/>
                                     <span>Refurbished</span>
                                 </label>
@@ -118,7 +139,7 @@ const PostAd = () => {
                         <div>
                             <span>Brand</span>
                             <div className={"w-full grid grid-cols-1 mt-2"}>
-                                <input type="text" placeholder="Write brand name"
+                                <input type="text" placeholder="Write brand name" onChange={(e)=>inputOnchange("brandName",e.target.value)}
                                        className="input input-bordered input-accent w-full"/>
                             </div>
                         </div>
@@ -126,10 +147,11 @@ const PostAd = () => {
                         {/*feature*/}
 
                         <div>
-                            <span>Feature</span>
+                            <span>Features</span>
                             <div className={"w-full grid grid-cols-1 mt-2"}>
-                                <input type="text" placeholder="Write feature name"
-                                       className="input input-bordered input-accent w-full"/>
+                                <input type="text" placeholder="Write product features"
+                                       onChange={(e)=>inputOnchange("features",e.target.value)}   className="input input-bordered input-accent w-full"
+                                />
                             </div>
                         </div>
                         {/*model*/}
@@ -137,7 +159,8 @@ const PostAd = () => {
                             <span>Model</span>
                             <div className={"w-full grid grid-cols-1 mt-2"}>
                                 <input type="text" placeholder="Write model name"
-                                       className="input input-bordered input-accent w-full"/>
+                                       onChange={(e)=>inputOnchange("model",e.target.value)}   className="input input-bordered input-accent w-full"
+                                />
                             </div>
                         </div>
 
@@ -146,42 +169,48 @@ const PostAd = () => {
                             <span>Edition(optional)</span>
                             <div className={"w-full grid grid-cols-1 mt-2"}>
                                 <input type="text" placeholder="Write edition name"
-                                       className="input input-bordered input-accent w-full"/>
+                                       onChange={(e)=>inputOnchange("edition",e.target.value)}   className="input input-bordered input-accent w-full"/>
+                            </div>
+                        </div>
+                        <div>
+                            <span>Description (Maximum letter 2000) </span>
+                            <div className={"w-full grid grid-cols-1 mt-2"}>
+                                <textarea className="textarea textarea-accent" maxLength={2000}
+                                          onChange={(e)=>inputOnchange("description",e.target.value)}   placeholder="Write product description"
+                                ></textarea>
                             </div>
                         </div>
                         {/*edition*/}
-                        <div className={"flex items-center gap-2"}>
-                            <input type="checkbox" className="checkbox checkbox-accent"/>
+                        <div>
                             <span>Negotiable</span>
+                            <div className={"w-full grid grid-cols-2 gap-[20rem]  mt-2"}>
+                                <label className={"inline-flex items-center gap-1"}>
+                                    <input type="radio" name="No" className="radio radio-accent" value={"No"}
+                                           onChange={(e) => inputOnchange("negotiable", e.target.value)}
+                                           checked={postData.negotiable === "No"}/>
+                                    <span>No</span>
+                                </label>
+                                <label className={"inline-flex items-center gap-1"}>
+                                    <input type="radio" name="Yes" className="radio radio-accent" value={"Yes"}
+                                           onChange={(e) => inputOnchange("negotiable", e.target.value)}
+                                           checked={postData.negotiable === "Yes"}/>
+                                    <span>Yes</span>
+                                </label>
+                            </div>
                         </div>
                     </div>
                 </section>
                 <div className={"divider"}></div>
                 <section className="flex flex-col items-center justify-center">
 
-                    {/*edition*/}
+                    {/*image*/}
                     <div className="flex flex-col gap-5 items-start w-[50%]  justify-center">
                         <h2 className={"text-xl font-semibold"}>Add image<span
                             className={"text-error text-sm font-normal"}>(Max size can be 200px)</span></h2>
                         <div className="w-32 h-32 bg-gray-200 rounded-full overflow-hidden relative">
-                            {selectedImage ? (
-                                <img
-                                    src={URL.createObjectURL(selectedImage)}
-                                    alt="Selected"
-                                    className="w-full h-full object-cover"
-                                />
-                            ) : (
-                                <div className="w-full h-full flex items-center justify-center text-gray-500">
-                                    <span className="text-sm">Upload Image</span>
-                                </div>
-                            )}
+                            <img src={""} alt="" className="w-full h-full object-cover"/>
                         </div>
-                        <input
-                            type="file"
-                            accept="image/*"
-                            className="mt-4"
-                            onChange={handleImageChange}
-                        />
+                        <input type="file" accept="image/*" className="mt-4"/>
                     </div>
                 </section>
                 <div className={"divider"}></div>
@@ -209,7 +238,7 @@ const PostAd = () => {
                             </p>
                         </div>
                         <div>
-                            <button disabled={!isChecked} className={"btn btn-primary text-base-100 btn-wide"}>Post ad</button>
+                            <button onClick={onPost} disabled={!isChecked} className={"btn btn-primary text-base-100 btn-wide"}>Post ad</button>
                         </div>
                     </div>
                 </section>
