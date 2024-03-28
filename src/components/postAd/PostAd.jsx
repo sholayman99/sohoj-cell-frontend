@@ -16,9 +16,7 @@ const PostAd = () => {
     const [isChecked, setIsChecked] = useState(false);
     let [postData,setPostData] = useState({
         productName:"",price:"",categoryID:"",districtID:"",divisionID:"",condition:"Used",authenticity:"Original",features:"",brandName:"",model:"",
-        description:"",negotiable:"No",edition:"", userEmail:userInfo['email'],mobile:userInfo['mobile']
-
-    })
+        description:"",negotiable:"No",edition:"" })
 
     const [selectedImage, setSelectedImage] = useState("");
 
@@ -45,10 +43,11 @@ const PostAd = () => {
 const navigate = useNavigate()
 
     const onPost = async ()=>{
-
+       postData.userEmail = userInfo['email'];
+       postData.mobile = userInfo['mobile']
        let res = await postAdRequest(postData,selectedImage);
        if(res === true){
-           navigate('/your-ad')
+           navigate('/dashboard/my-ad');
        }
 
 

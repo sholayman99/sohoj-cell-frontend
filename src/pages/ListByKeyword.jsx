@@ -5,7 +5,7 @@ const ListProduct = lazy(()=>import("../components/common/ListAds.jsx"))
 const ListByKeyword = () => {
     return (
         <>
-          <Suspense fallback={LazyMotion}>
+          <Suspense fallback={<LazyMotion />}>
               <ListProduct />
           </Suspense>
         </>

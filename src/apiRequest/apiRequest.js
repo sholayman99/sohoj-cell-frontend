@@ -194,6 +194,7 @@ export async function postAdRequest(postData,image){
 
     try {
         let res = await axios.post("/createAd",postBody,axiosHeader);
+        console.log(res)
         store.dispatch(hideLoader());
         if(res.data['status']==="success"){
             successMsg("Ad created!");
@@ -202,6 +203,7 @@ export async function postAdRequest(postData,image){
     }
     catch (e) {
         store.dispatch(hideLoader());
+        console.log(e)
         errorMsg("Something went wrong!")
         return false;
     }

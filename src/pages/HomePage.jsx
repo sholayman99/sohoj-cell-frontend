@@ -7,7 +7,7 @@ const CategoryList = lazy(()=> import("../components/home/CategoryList.jsx"));
 const HomePage = () => {
     return (
       <>
-          <Suspense fallback={LazyMotion}>
+          <Suspense fallback={<LazyMotion />}>
               <Search />
               <CategoryList />
               <OpportunityCard />

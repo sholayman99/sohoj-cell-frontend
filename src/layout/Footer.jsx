@@ -6,8 +6,8 @@ import {Link} from "react-router-dom";
 
 const Footer = () => {
     return (
-        <footer className=" px-20 py-5 bg-base-100 border-t-2 border-primary text-base-content">
-            <section className={"footer"}>
+        <footer className=" lg:px-20 px-5 py-5 bg-base-100 border-t-2 border-primary text-base-content">
+            <section className={" grid lg:grid-cols-5 md:grid-cols-3 grid-cols-1 gap-10"}>
                 <aside className={"flex flex-col gap-5"}>
                     <h3 className={"text-gray-700 font-semibold"}>Download our app</h3>
                     <div className={"flex items-center gap-1"}>
@@ -23,7 +23,7 @@ const Footer = () => {
                         <p className={"text-info"}>Sri Lanka</p>
                     </div>
                 </aside>
-                <nav>
+                <nav className={"flex flex-col gap-2"}>
                     <h6 className={"text-gray-700 font-semibold"}>More from SohojCell</h6>
                     <a className="link link-info link-hover">Sell Fast</a>
                     <a className="link link-info link-hover">Membership</a>
@@ -31,20 +31,20 @@ const Footer = () => {
                     <a className="link link-info link-hover">Ads Promotion</a>
                     <a className="link link-info link-hover">Bikes Guides</a>
                 </nav>
-                <nav>
+                <nav className={"flex flex-col gap-2"}>
                     <h6 className={"text-gray-700 font-semibold"}>Help & Support</h6>
                     <a className="link link-info link-hover">Faq</a>
                     <a className="link link-info link-hover">Stay Safe</a>
                     <a className="link link-info link-hover">Contact</a>
                 </nav>
-                <nav>
+                <nav className={"flex flex-col gap-2"}>
                     <h6 className={"text-gray-700 font-semibold"}>Follow SohojCell</h6>
                     <a className="link link-info link-hover">Blog</a>
                     <a className="link link-info link-hover">Facebook</a>
                     <a className="link link-info link-hover">Twitter</a>
                     <a className="link link-info link-hover">Youtube</a>
                 </nav>
-                <nav>
+                <nav className={"flex flex-col gap-2"}>
                     <h6 className={"text-gray-700 font-semibold"}>About SohojCell</h6>
                     <a className="link link-info link-hover">About Us</a>
                     <a className="link link-info link-hover">Careers</a>

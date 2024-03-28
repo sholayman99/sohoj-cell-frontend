@@ -20,7 +20,7 @@ const PostYourAdPage = () => {
 
     return (
         <>
-        <Suspense fallback={LazyMotion}>
+        <Suspense fallback={<LazyMotion />}>
             <PostAd />
         </Suspense>
         </>

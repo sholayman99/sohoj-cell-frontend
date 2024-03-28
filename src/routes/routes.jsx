@@ -5,9 +5,13 @@ import LoginPage from "../pages/LoginPage.jsx";
 import RegistrationPage from "../pages/RegistrationPage.jsx";
 import AllAdsPage from "../pages/AllAdsPage.jsx";
 import PostYourAdPage from "../pages/PostYourAdPage.jsx";
-import Dashboard from "../pages/Dashboard.jsx";
+import Dashboard from "../layout/Dashboard.jsx";
 import ListByCategoryPage from "../pages/ListByCategoryPage.jsx";
-import YourAdPage from "../pages/YourAdPage.jsx";
+import MyAdsPage from "../pages/MyAdsPage.jsx";
+import MyAccountPage from "../pages/MyAccountPage.jsx";
+import FavouritesPage from "../pages/FavouritesPage.jsx";
+import SettingsPage from "../pages/SettingsPage.jsx";
+
 
 
 const routes = createBrowserRouter([
@@ -36,17 +40,36 @@ const routes = createBrowserRouter([
                 element:<PostYourAdPage />
             },
             {
-                path:"/dashboard",
-                element:<Dashboard />
-            },
-            {
                 path:"/list-by-category/:categoryID",
                 element:<ListByCategoryPage />
             },
+        ]
+    },
+    {
+        path:'/dashboard',
+        element: <Dashboard />,
+        children:[
             {
-                path:"/your-ad",
-                element:<YourAdPage />
-            }
+                path: "/dashboard/my-ad",
+                element: <MyAdsPage />
+            },
+            {
+                path:"/dashboard",
+                element: <MyAccountPage />
+            },
+            {
+                path:"/dashboard/favourites",
+                element: <FavouritesPage />
+            },
+            {
+                path:"/dashboard/settings",
+                element: <SettingsPage />
+            },
+            {
+                path:"/dashboard/my-ad",
+                element: <MyAdsPage />
+            },
+
         ]
     }
 ]);

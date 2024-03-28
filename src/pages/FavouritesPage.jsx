@@ -1,11 +1,11 @@
 import React from 'react';
 
-const YourAdPage = () => {
+const FavouritesPage = () => {
     return (
         <div>
-
+            
         </div>
     );
 };
 
-export default YourAdPage;
+export default FavouritesPage;

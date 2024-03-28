@@ -4,7 +4,7 @@ const Registration = lazy(()=>import("../components/authentication/Registration.
 const RegistrationPage = () => {
     return (
         <>
-            <Suspense fallback={LazyMotion}>
+            <Suspense fallback={<LazyMotion />}>
                 <Registration />
             </Suspense>
         </>

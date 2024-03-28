@@ -13,7 +13,7 @@ const AllAdsPage = () => {
 
     return (
         <>
-          <Suspense fallback={LazyMotion}>
+          <Suspense fallback={<LazyMotion />}>
               < ListAds />
           </Suspense>
         </>
