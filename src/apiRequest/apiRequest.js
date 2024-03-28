@@ -185,3 +185,27 @@ export async function userInfoRequest(){
         errorMsg("Something went wrong!")
     }
 }
+
+
+export async function postAdRequest(postData,image){
+    store.dispatch(showLoader());
+    let postBody = postData;
+    postData.image = image;
+
+    try {
+        let res = await axios.post("/createAd",postBody,axiosHeader);
+        store.dispatch(hideLoader());
+        if(res.data['status']==="success"){
+            successMsg("Ad created!");
+            return true;
+        }
+    }
+    catch (e) {
+        store.dispatch(hideLoader());
+        errorMsg("Something went wrong!")
+        return false;
+    }
+
+    console.log(postBody)
+
+}

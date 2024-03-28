@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import {useSelector} from "react-redux";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
+import {getBase64} from "../../utility/formHelper.js";
+import {postAdRequest} from "../../apiRequest/apiRequest.js";
 
 
 const PostAd = () => {
@@ -14,9 +16,11 @@ const PostAd = () => {
     const [isChecked, setIsChecked] = useState(false);
     let [postData,setPostData] = useState({
         productName:"",price:"",categoryID:"",districtID:"",divisionID:"",condition:"Used",authenticity:"Original",features:"",brandName:"",model:"",
-        description:"",negotiable:"No",edition:""
+        description:"",negotiable:"No",edition:"", userEmail:userInfo['email'],mobile:userInfo['mobile']
 
     })
+
+    const [selectedImage, setSelectedImage] = useState("");
 
     const inputOnchange = (key,value)=>{
         setPostData((data)=>({
@@ -30,14 +34,24 @@ const PostAd = () => {
         setIsChecked(!isChecked);
     };
 
-    const onRadioChange =(e)=>{
-        setCondition(e.target.value);
-        setAuthenticity(e.target.value);
-        setNegotiable(e.target.value);
-    }
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        getBase64(file).then((result)=>{
+            setSelectedImage(result);
+        })
+
+    };
+
+const navigate = useNavigate()
 
     const onPost = async ()=>{
-       console.log(postData.categoryID,postData.condition)
+
+       let res = await postAdRequest(postData,selectedImage);
+       if(res === true){
+           navigate('/your-ad')
+       }
+
+
     }
 
     return (
@@ -208,9 +222,19 @@ const PostAd = () => {
                         <h2 className={"text-xl font-semibold"}>Add image<span
                             className={"text-error text-sm font-normal"}>(Max size can be 200px)</span></h2>
                         <div className="w-32 h-32 bg-gray-200 rounded-full overflow-hidden relative">
-                            <img src={""} alt="" className="w-full h-full object-cover"/>
+                            {selectedImage ? (
+                                <img
+                                    src={selectedImage}
+                                    alt="Selected"
+                                    className="w-full h-full object-cover"
+                                />
+                            ) : (
+                                <div className="w-full h-full flex items-center justify-center text-gray-500">
+                                    <span className="text-sm">Upload Image</span>
+                                </div>
+                            )}
                         </div>
-                        <input type="file" accept="image/*" className="mt-4"/>
+                        <input type="file" accept="image/*" onChange={handleImageChange} className="mt-4"/>
                     </div>
                 </section>
                 <div className={"divider"}></div>

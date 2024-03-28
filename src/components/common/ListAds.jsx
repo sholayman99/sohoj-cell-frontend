@@ -77,7 +77,7 @@ const ListAds = () => {
                     <div className={"w-full max-w-2xl"}>
                         <h2 className={"text-lg font-semibold text-gray-700"}>Buy, Sell, Rent or Find Anything in Bangladesh</h2>
                         <Slider/>
-                        <div>
+                        <div className={"grid grid-cols-1 gap-5"}>
                             {
                                 listAds.map((item,i)=>{
                                     return(

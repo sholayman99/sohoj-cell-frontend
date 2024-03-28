@@ -7,6 +7,7 @@ import AllAdsPage from "../pages/AllAdsPage.jsx";
 import PostYourAdPage from "../pages/PostYourAdPage.jsx";
 import Dashboard from "../pages/Dashboard.jsx";
 import ListByCategoryPage from "../pages/ListByCategoryPage.jsx";
+import YourAdPage from "../pages/YourAdPage.jsx";
 
 
 const routes = createBrowserRouter([
@@ -41,6 +42,10 @@ const routes = createBrowserRouter([
             {
                 path:"/list-by-category/:categoryID",
                 element:<ListByCategoryPage />
+            },
+            {
+                path:"/your-ad",
+                element:<YourAdPage />
             }
         ]
     }
