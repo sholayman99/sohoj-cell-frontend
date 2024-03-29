@@ -36,6 +36,11 @@ class formHelper {
             reader.onerror = (error) => reject(error);
         });
     }
+
+    checkFileSize(image){
+        let maxSize = 100 * 1024;
+        return image <= maxSize;
+    }
 }
 
-export const {isEmail,isEmpty,isMobile,errorMsg,isPassword,successMsg,getBase64} = new formHelper();
+export const {isEmail,isEmpty,isMobile,errorMsg,isPassword,successMsg,getBase64,checkFileSize} = new formHelper();
