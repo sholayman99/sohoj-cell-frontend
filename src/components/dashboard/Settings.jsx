@@ -2,8 +2,9 @@ import React, {useRef, useState} from 'react';
 import {useSelector} from "react-redux";
 import {FaMobile, FaUser} from "react-icons/fa6";
 import {RxAvatar} from "react-icons/rx";
-import {getBase64} from "../../utility/formHelper.js";
+import {checkFileSize, errorMsg, getBase64, isEmpty} from "../../utility/formHelper.js";
 import {CgDetailsMore} from "react-icons/cg";
+import {updateUserDetailsRequest, userInfoRequest} from "../../apiRequest/apiRequest.js";
 
 const Settings = () => {
 
@@ -11,21 +12,51 @@ const Settings = () => {
 
     let userImgRef,userImgView=useRef();
 
-    const [formData,setFormData] = useState({
+    let [formData,setFormData] = useState({
         mobile:"",fName:"",lName:""
     });
 
     const previewImg = async() => {
         let image = userImgRef.files[0];
-        let imageSize = userImgRef.files[0].size;
 
         getBase64(image).then((result)=>{
             userImgView.src = result ;
         })
     }
 
-    const onUpdateDetails = async () =>{
+   const inputOnChange =(key,value)=>{
+        setFormData((formData)=>({
+            ...formData,
+            [key]:value
+        }))
+   }
 
+    const onUpdateDetails = async () =>{
+        let imageSize = userImgRef.files[0].size;
+
+        formData.photo = userImgView.src;
+
+        if(!checkFileSize(imageSize)){
+            errorMsg("Max size can be 100KB")
+        }
+        else if(isEmpty(formData.mobile)){
+            errorMsg("Provide a valid number!")
+        }
+        else if(isEmpty(formData.fName)){
+            errorMsg("First name can't be empty!")
+        }
+        else if(isEmpty(formData.lName)){
+            errorMsg("Last name can't be empty!")
+        }
+        else{
+           let res = await updateUserDetailsRequest(formData);
+           if(res === true){
+               await userInfoRequest();
+               formData.fName =""
+               formData.lName = ""
+               formData.mobile = ""
+           }
+        }
     }
 
     return (
@@ -73,6 +104,7 @@ const Settings = () => {
                         <span className={"text-accent"}>First name</span>
                     </div>
                     <input type="text" placeholder="Update first name"
+                           onChange={(e)=>inputOnChange("fName",e.target.value)}
                            className="input input-bordered input-accent w-full mt-1 max-w-xs"/>
                 </div>
 
@@ -85,6 +117,7 @@ const Settings = () => {
                         <span className={"text-accent"}>Last name</span>
                     </div>
                     <input type="text" placeholder="Update last name"
+                           onChange={(e)=>inputOnChange("lName",e.target.value)}
                            className="input input-bordered input-accent w-full mt-1 max-w-xs"/>
                 </div>
 
@@ -97,6 +130,7 @@ const Settings = () => {
                         <span className={"text-accent"}>Mobile</span>
                     </div>
                     <input type="text" placeholder="Update mobile number"
+                           onChange={(e)=>inputOnChange("mobile",e.target.value)}
                            className="input input-bordered input-accent w-full mt-1 max-w-xs"/>
                 </div>
 

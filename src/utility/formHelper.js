@@ -39,7 +39,7 @@ class formHelper {
 
     checkFileSize(image){
         let maxSize = 100 * 1024;
-        return image <= maxSize;
+        return image <= maxSize
     }
 }
 

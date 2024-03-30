@@ -21,8 +21,8 @@ const PostAd = () => {
     const [selectedImage, setSelectedImage] = useState("");
 
     const inputOnchange = (key,value)=>{
-        setPostData((data)=>({
-            ...data,
+        setPostData((postData)=>({
+            ...postData,
             [key]:value
         }))
     }
