@@ -247,3 +247,21 @@ export async function userAdsRequest(){
     }
 
 }
+
+export async function adRemoveRequest(id){
+    store.dispatch(showLoader());
+    try {
+        let res = await axios.get(`/removeAd/${id}`,axiosHeader);
+        store.dispatch(hideLoader());
+        if(res.data['status']==="success"){
+           successMsg("Item deleted successfully!");
+           return true
+        }
+    }
+    catch (e) {
+        store.dispatch(hideLoader());
+        errorMsg("Something went wrong!")
+        return false;
+    }
+
+}

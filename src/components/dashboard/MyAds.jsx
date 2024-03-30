@@ -5,6 +5,8 @@ import {Link} from "react-router-dom";
 import {FaEdit} from "react-icons/fa";
 import {MdDelete, MdDeleteForever} from "react-icons/md";
 import {FaEye} from "react-icons/fa6";
+import {deleteAd} from "../../utility/deleteAlert.js";
+import {allAdsRequest, userAdsRequest} from "../../apiRequest/apiRequest.js";
 
 const MyAds = () => {
 
@@ -13,7 +15,13 @@ const MyAds = () => {
 
     const userDetails = useSelector((state)=>state.user.info);
 
-
+   const removeItem = async (id)=>{
+      let res = await deleteAd(id);
+      if(res === true){
+          await userAdsRequest();
+          await allAdsRequest();
+      }
+   }
     useEffect(() => {
         if(userDetails['role'] === "admin"){
             setIsDisable(false);
@@ -56,7 +64,7 @@ const MyAds = () => {
                                                  </td>
                                                 <td className={"lg:text-2xl text-xl text-gray-600 flex items-center"}>
                                                     <button className={"hover:text-accent"}><FaEdit/></button>
-                                                    <button className={"hover:text-error mx-2"}><MdDeleteForever/></button>
+                                                    <button onClick={()=>removeItem(item['_id'])} className={"hover:text-error mx-2"}><MdDeleteForever/></button>
                                                     <button ><FaEye/></button>
                                                 </td>
                                                </tr>
