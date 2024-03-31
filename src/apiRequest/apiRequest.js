@@ -10,9 +10,9 @@ import {setInfo} from "../redux/state-slices/user-slice.js";
 
 let axiosHeader = {headers:{'token':getToken()}};
 
-export async function registrationRequest(fName,lName,email,password,photo){
+export async function registrationRequest(fullName,email,password,photo,mobile){
     store.dispatch(showLoader());
-    let postBody ={fName:fName,lName:lName,email:email,password:password,photo:photo};
+    let postBody ={fullName:fullName,email:email,password:password,photo:photo,mobile:mobile};
 
     try {
         let res = await axios.post("/registration",postBody);
@@ -207,27 +207,6 @@ export async function postAdRequest(postData,image){
     }
 }
 
-export async function updateUserDetailsRequest(postData){
-    store.dispatch(showLoader());
-
-    try {
-        let res = await axios.post("/update",postData,axiosHeader);
-        console.log(res)
-        store.dispatch(hideLoader());
-        if(res.data['status']==="success"){
-            successMsg("Details updated!");
-            return true;
-        }
-    }
-    catch (e) {
-        store.dispatch(hideLoader());
-        console.log(e)
-        errorMsg("Something went wrong!")
-        return false;
-    }
-
-}
-
 
 export async function userAdsRequest(){
     store.dispatch(showLoader());
@@ -256,6 +235,81 @@ export async function adRemoveRequest(id){
         if(res.data['status']==="success"){
            successMsg("Item deleted successfully!");
            return true
+        }
+    }
+    catch (e) {
+        store.dispatch(hideLoader());
+        errorMsg("Something went wrong!")
+        return false;
+    }
+
+}
+
+export async function userPhotoUpdateRequest(photo){
+    store.dispatch(showLoader());
+    let postData ={photo:photo}
+    try {
+        let res = await axios.post(`/photoUpdate`,postData,axiosHeader);
+        store.dispatch(hideLoader());
+        if(res.data['status']==="success"){
+            successMsg("Photo updated!");
+            return true
+        }
+    }
+    catch (e) {
+        store.dispatch(hideLoader());
+        errorMsg("Something went wrong!")
+        return false;
+    }
+
+}
+
+export async function userNameUpdateRequest(fullName){
+    store.dispatch(showLoader());
+    let postData ={fullName:fullName}
+    try {
+        let res = await axios.post(`/userNameUpdate`,postData,axiosHeader);
+        store.dispatch(hideLoader());
+        if(res.data['status']==="success"){
+            successMsg("Full name updated!");
+            return true
+        }
+    }
+    catch (e) {
+        store.dispatch(hideLoader());
+        errorMsg("Something went wrong!")
+        return false;
+    }
+
+}
+
+export async function userMobileUpdateRequest(mobile){
+    store.dispatch(showLoader());
+    let postData ={mobile:mobile}
+    try {
+        let res = await axios.post(`/userMobileUpdate`,postData,axiosHeader);
+        store.dispatch(hideLoader());
+        if(res.data['status']==="success"){
+            successMsg("Mobile number updated!");
+            return true
+        }
+    }
+    catch (e) {
+        store.dispatch(hideLoader());
+        errorMsg("Something went wrong!")
+        return false;
+    }
+
+}
+
+export async function userPasswordUpdateRequest(password){
+    store.dispatch(showLoader());
+    let postData ={password:password}
+    try {
+        let res = await axios.post(`/passwordUpdate`,postData,axiosHeader);
+        store.dispatch(hideLoader());
+        if(res.data['status']==="success"){
+            return true
         }
     }
     catch (e) {

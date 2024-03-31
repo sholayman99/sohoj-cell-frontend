@@ -1,9 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {useSelector} from "react-redux";
-import {RiAlignBottom} from "react-icons/ri";
-import {Link} from "react-router-dom";
 import {FaEdit} from "react-icons/fa";
-import {MdDelete, MdDeleteForever} from "react-icons/md";
+import {MdDeleteForever} from "react-icons/md";
 import {FaEye} from "react-icons/fa6";
 import {deleteAd} from "../../utility/deleteAlert.js";
 import {allAdsRequest, userAdsRequest} from "../../apiRequest/apiRequest.js";
