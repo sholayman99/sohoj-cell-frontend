@@ -9,7 +9,7 @@ const Dashboard = () => {
     return (
         <>
             <AppNavbar/>
-              <main className={"bg-base-200 lg:p-20  p-5"}>
+              <main className={"bg-base-300 lg:p-20  p-5"}>
                   <div className={"bg-base-100 rounded-md p-5 flex flex-col lg:flex-row md:flex-row items-start  gap-10"}>
                       <section className={"flex flex-col items-start w-full max-w-[150px]"}>
                           <h2 className={"text-2xl font-light"}>Account</h2>

@@ -1,7 +1,12 @@
 import React, {useRef, useState} from 'react';
 import {useSelector} from "react-redux";
 import {checkFileSize, errorMsg, getBase64, isPassword} from "../../utility/formHelper.js";
-import {userInfoRequest, userPasswordUpdateRequest, userPhotoUpdateRequest} from "../../apiRequest/apiRequest.js";
+import {
+    logoutRequest,
+    userInfoRequest,
+    userPasswordUpdateRequest,
+    userPhotoUpdateRequest
+} from "../../apiRequest/apiRequest.js";
 import {FaEye, FaMobile, FaUser} from "react-icons/fa6";
 import {FaEdit, FaEyeSlash} from "react-icons/fa";
 import {userNameUpdateModal} from "../../utility/userNameUpdateModal.js";
@@ -9,6 +14,7 @@ import {userMobileUpdateModal} from "../../utility/userMobileUpdateModal.js";
 import {confirmModal} from "../../utility/confirmModal.js";
 
 const Settings = () => {
+
 
     const userDetails = useSelector((state)=>state.user.info);
     const [isDisable,setIsDisable] = useState(true);
@@ -95,6 +101,10 @@ const Settings = () => {
         if(res === true){
             await userInfoRequest();
         }
+    }
+
+    const onLogout = async ()=>{
+        await logoutRequest();
     }
 
 
@@ -185,6 +195,11 @@ const Settings = () => {
                                required/>
                     </div>
                     <button disabled={isDisable} onClick={changePassword} className="btn btn-accent max-w-[200px]">Change</button>
+                </div>
+
+                <div className={"flex flex-col mt-10 lg:flex-row md:flex-row items-center gap-3 max-w-[200px]"}>
+                    <button  className={"btn btn-error w-full  text-base-100"}>Delete account</button>
+                    <button onClick={onLogout} className={"btn btn-primary w-full  text-base-100"}>Log out</button>
                 </div>
 
             </section>

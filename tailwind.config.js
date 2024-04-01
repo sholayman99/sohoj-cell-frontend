@@ -20,11 +20,11 @@ export default {
 
           "info": "#00547E",
 
-          "success": "#049a3b",
+          "success": "#02c24d",
 
           "warning": "#facc15",
 
-          "error": "#f82c2c"
+          "error": "#ff5959"
         },
       },
     ],

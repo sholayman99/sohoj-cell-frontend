@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
 import {FaUser} from "react-icons/fa6";
 import { Fade as Hamburger } from 'hamburger-react'
-import {getToken} from "../utility/sessionHelper.js";
+import {getCookie} from "../utility/sessionHelper.js";
 
 const AppNavbar = () => {
+
     const navList = (
         <>
             <li>
@@ -11,13 +12,16 @@ const AppNavbar = () => {
             </li>
             <li>
                 {
-                    getToken()?( <Link to={"/dashboard"}><span><FaUser/> </span> My account</Link>)
+                    getCookie()?( <Link to={"/dashboard"}><span><FaUser/> </span> My account</Link>)
                         :
                         ( <Link to={"/login"}><span><FaUser/> </span> Login</Link>)
                 }
             </li>
             <li>
-                <Link  className={"btn btn-secondary  text-[16px] uppercase text-orange-800"} to={"/create-ad"}> Post Your Add</Link>
+                {
+                    getCookie()?<Link  className={"btn btn-secondary  text-[16px] uppercase text-orange-800"} to={"/create-ad"}> Post Your Add</Link>
+                    :<li> </li>
+                }
             </li>
         </>
     );

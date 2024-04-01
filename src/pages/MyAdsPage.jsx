@@ -6,8 +6,8 @@ const MyAdsPage = () => {
 
     useEffect(() => {
         (async ()=>{
-            await userAdsRequest();
             await userInfoRequest();
+            await userAdsRequest();
         })()
     }, []);
 

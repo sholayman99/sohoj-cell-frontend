@@ -1,14 +1,13 @@
-import axios from "axios";
-import store from "../redux/store/store.js";
 import {hideLoader, showLoader} from "../redux/state-slices/settings-slice.js";
-import {setCategory, setDistrict, setDivision} from "../redux/state-slices/category-slice.js";
+import store from "../redux/store/store.js";
 import {errorMsg, successMsg} from "../utility/formHelper.js";
-import {getToken, setRole, setToken, setUserInfo} from "../utility/sessionHelper.js";
-import {setAdsByCategory, setAllAds, setUserAd} from "../redux/state-slices/ad-slice.js";
+import axios from "axios";
+import {setAdDetails, setAdsByCategory, setAllAds, setUserAd} from "../redux/state-slices/ad-slice.js";
 import {setSliders} from "../redux/state-slices/slider-slice.js";
+import {setCategory, setDistrict, setDivision} from "../redux/state-slices/category-slice.js";
 import {setInfo} from "../redux/state-slices/user-slice.js";
+import {removeSession, setRole, setUserInfo} from "../utility/sessionHelper.js";
 
-let axiosHeader = {headers:{'token':getToken()}};
 
 export async function registrationRequest(fullName,email,password,photo,mobile){
     store.dispatch(showLoader());
@@ -35,33 +34,34 @@ export async function registrationRequest(fullName,email,password,photo,mobile){
     }
 }
 
+
 export async function loginRequest(email,password){
     store.dispatch(showLoader());
     let postBody ={email:email,password:password};
 
 
     try {
-      let res = await axios.post("/login",postBody);
-      store.dispatch(hideLoader())
-      if(res.data['status'] === "success"){
-          setToken(res.data['token']);
-          setRole(res.data['role']);
-          setUserInfo(res.data['data']);
-          successMsg("Login successfully!");
-          return true
-      }
-      else{
-          errorMsg("Invalid email & password!");
-          return false;
-      }
+        let res = await axios.post("/login",postBody, {withCredentials:true});
+        store.dispatch(hideLoader())
+        if(res.data['status'] === "success"){
+            successMsg("Login successfully!");
+            setUserInfo(res.data['data']);
+            setRole(res.data['role']);
+            return true
+        }
+        else{
+            errorMsg("Invalid email & password!");
+            return false;
+        }
     }
     catch (e) {
-         store.dispatch(hideLoader())
-         errorMsg("Something went wrong!");
-         return false
+        store.dispatch(hideLoader())
+        errorMsg("Something went wrong!");
+        return false
     }
 
 }
+
 
 
 export async function categoryListRequest(){
@@ -119,7 +119,7 @@ export async function listByCategoryRequest(id){
         let res = await axios.get(`/listByCategory/${id}`);
         store.dispatch(hideLoader());
         if(res.data['status']==='success'){
-           store.dispatch(setAdsByCategory(res.data['data']));
+            store.dispatch(setAdsByCategory(res.data['data']));
         }
     }
     catch (e) {
@@ -132,14 +132,14 @@ export async function listByCategoryRequest(id){
 export async function sliderListRequest(){
     store.dispatch(showLoader());
     try {
-       let res = await axios.get('/sliderList');
-       store.dispatch(hideLoader());
-       if(res.data['status'] === 'success'){
-          store.dispatch(setSliders(res.data['data']));
-       }
-       else{
-           errorMsg("Server error!")
-       }
+        let res = await axios.get('/sliderList');
+        store.dispatch(hideLoader());
+        if(res.data['status'] === 'success'){
+            store.dispatch(setSliders(res.data['data']));
+        }
+        else{
+            errorMsg("Server error!")
+        }
     }
     catch (e) {
         store.dispatch(hideLoader());
@@ -171,7 +171,7 @@ export async function allAdsRequest(){
 export async function userInfoRequest(){
     store.dispatch(showLoader());
     try {
-        let res = await axios.get('/info',axiosHeader);
+        let res = await axios.get('/info',{withCredentials:true});
         store.dispatch(hideLoader());
         if(res.data['status'] === 'success'){
             store.dispatch(setInfo(res.data['data'][0]));
@@ -193,7 +193,7 @@ export async function postAdRequest(postData,image){
     postData.image = image;
 
     try {
-        let res = await axios.post("/createAd",postBody,axiosHeader);
+        let res = await axios.post("/createAd",postBody,{withCredentials:true});
         store.dispatch(hideLoader());
         if(res.data['status']==="success"){
             successMsg("Ad created!");
@@ -208,11 +208,12 @@ export async function postAdRequest(postData,image){
 }
 
 
+
 export async function userAdsRequest(){
     store.dispatch(showLoader());
 
     try {
-        let res = await axios.get("/listUserAd",axiosHeader);
+        let res = await axios.get("/listUserAd",{withCredentials:true});
         store.dispatch(hideLoader());
         if(res.data['status']==="success"){
             store.dispatch(setUserAd(res.data['data']));
@@ -227,14 +228,16 @@ export async function userAdsRequest(){
 
 }
 
+
+
 export async function adRemoveRequest(id){
     store.dispatch(showLoader());
     try {
-        let res = await axios.get(`/removeAd/${id}`,axiosHeader);
+        let res = await axios.get(`/removeAd/${id}`,{withCredentials:true});
         store.dispatch(hideLoader());
         if(res.data['status']==="success"){
-           successMsg("Item deleted successfully!");
-           return true
+            successMsg("Item deleted successfully!");
+            return true
         }
     }
     catch (e) {
@@ -245,11 +248,12 @@ export async function adRemoveRequest(id){
 
 }
 
+
 export async function userPhotoUpdateRequest(photo){
     store.dispatch(showLoader());
     let postData ={photo:photo}
     try {
-        let res = await axios.post(`/photoUpdate`,postData,axiosHeader);
+        let res = await axios.post(`/photoUpdate`,postData,{withCredentials:true});
         store.dispatch(hideLoader());
         if(res.data['status']==="success"){
             successMsg("Photo updated!");
@@ -264,11 +268,13 @@ export async function userPhotoUpdateRequest(photo){
 
 }
 
+
+
 export async function userNameUpdateRequest(fullName){
     store.dispatch(showLoader());
     let postData ={fullName:fullName}
     try {
-        let res = await axios.post(`/userNameUpdate`,postData,axiosHeader);
+        let res = await axios.post(`/userNameUpdate`,postData,{withCredentials:true});
         store.dispatch(hideLoader());
         if(res.data['status']==="success"){
             successMsg("Full name updated!");
@@ -283,11 +289,13 @@ export async function userNameUpdateRequest(fullName){
 
 }
 
+
+
 export async function userMobileUpdateRequest(mobile){
     store.dispatch(showLoader());
     let postData ={mobile:mobile}
     try {
-        let res = await axios.post(`/userMobileUpdate`,postData,axiosHeader);
+        let res = await axios.post(`/userMobileUpdate`,postData,{withCredentials:true});
         store.dispatch(hideLoader());
         if(res.data['status']==="success"){
             successMsg("Mobile number updated!");
@@ -302,11 +310,12 @@ export async function userMobileUpdateRequest(mobile){
 
 }
 
+
 export async function userPasswordUpdateRequest(password){
     store.dispatch(showLoader());
     let postData ={password:password}
     try {
-        let res = await axios.post(`/passwordUpdate`,postData,axiosHeader);
+        let res = await axios.post(`/passwordUpdate`,postData,{withCredentials:true});
         store.dispatch(hideLoader());
         if(res.data['status']==="success"){
             return true
@@ -318,4 +327,59 @@ export async function userPasswordUpdateRequest(password){
         return false;
     }
 
+}
+
+
+export async function logoutRequest(){
+    store.dispatch(showLoader());
+
+    try {
+        let res = await axios.get(`/logout`);
+        store.dispatch(hideLoader());
+        if(res.data['status']==="success"){
+           removeSession();
+           successMsg("Logout successfully!")
+        }
+    }
+    catch (e) {
+        store.dispatch(hideLoader());
+        errorMsg("Something went wrong!")
+        return false;
+    }
+}
+
+
+export async function adDetailsRequest(id){
+    store.dispatch(showLoader());
+    try {
+        let res = await axios.get(`/adDetails/${id}`,{withCredentials:true});
+        store.dispatch(hideLoader());
+        if(res.data['status'] === 'success'){
+            store.dispatch(hideLoader());
+            store.dispatch(setAdDetails(res.data['data'][0]));
+        }
+    }
+    catch (e) {
+        store.dispatch(hideLoader());
+        errorMsg("Something went wrong!");
+    }
+}
+
+
+export async function adToFavRequest(postBody){
+    store.dispatch(showLoader());
+    try {
+        let res = await axios.post(`/createFavouriteList`,postBody,{withCredentials:true});
+        store.dispatch(hideLoader());
+        if(res.data['status'] === 'success'){
+            store.dispatch(hideLoader());
+            successMsg("Saved the ad!");
+            return true;
+        }
+    }
+    catch (e) {
+        store.dispatch(hideLoader());
+        errorMsg("Something went wrong!");
+        return false
+    }
 }

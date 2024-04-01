@@ -1,3 +1,5 @@
+import Cookies from "js-cookie";
+
 class sessionHelper{
 
     setToken(token){
@@ -25,7 +27,9 @@ class sessionHelper{
     }
 
     removeSession(){
+        Cookies.remove('token');
         localStorage.clear();
+        sessionStorage.clear();
         window.location.href = "/login"
     }
 
@@ -45,6 +49,19 @@ class sessionHelper{
         return sessionStorage.getItem("otp");
     }
 
+    getCookie(){
+        return !!Cookies.get("token");
+    }
+    unauthorized(code){
+        if(code === 401){
+            Cookies.clear();
+            sessionStorage.clear();
+            localStorage.clear();
+            window.location.href="/login";
+        }
+    }
+
 }
 
-export const {setToken,getToken,setRole,getRole,setUserInfo,getUserInfo,setEmail,getEmail,setOtp,getOtp} = new sessionHelper();
+export const {setToken,getToken,setRole,getRole,setUserInfo,getUserInfo,
+    setEmail,getEmail,setOtp,getOtp,unauthorized,removeSession,getCookie} = new sessionHelper();

@@ -1,11 +1,13 @@
 import {createSlice} from "@reduxjs/toolkit";
+import details from "../../components/details/Details.jsx";
 
 
 export const adSlice = createSlice({
     name:"ads",
     initialState:{
        listAd:[],
-       userAd:[]
+       userAd:[],
+       details:[],
     },
     reducers:{
         setAdsByCategory:(state,action)=>{
@@ -17,9 +19,13 @@ export const adSlice = createSlice({
         },
         setUserAd:(state,action)=>{
             state.userAd = action.payload;
+        },
+        setAdDetails:(state,action)=>{
+            state.details = action.payload;
         }
     }
 });
 
-export const {setAdsByCategory,setAllAds,setUserAd} = adSlice.actions;
+export const {setAdsByCategory,setAllAds,
+    setUserAd,setAdDetails} = adSlice.actions;
 export default adSlice.reducer;

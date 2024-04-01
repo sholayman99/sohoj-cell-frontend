@@ -11,18 +11,20 @@ const PostYourAdPage = () => {
 
     useEffect(() => {
         (async()=>{
+            await userInfoRequest();
             await categoryListRequest();
             await districtListRequest();
             await divisionListRequest();
-            await userInfoRequest();
         })()
     }, []);
 
     return (
         <>
+
         <Suspense fallback={<LazyMotion />}>
             <PostAd />
         </Suspense>
+
         </>
     );
 };

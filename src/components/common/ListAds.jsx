@@ -81,7 +81,7 @@ const ListAds = () => {
                             {
                                 listAds.map((item,i)=>{
                                     return(
-                                        <Link key={i} to={"/"} className={"flex items-start gap-5 border p-2 rounded-md border-secondary"}>
+                                        <Link key={i} to={`/details/${item['_id']}`} className={"flex items-start gap-5 border p-2 rounded-md border-secondary"}>
                                             <img className={"w-56"} src={item['image']} alt={""} />
                                             <div>
                                                 <h3 className={"text-2xl font-semibold"}>{item['productName']}-{item['model']}</h3>
