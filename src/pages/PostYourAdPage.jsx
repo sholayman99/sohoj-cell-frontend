@@ -6,7 +6,7 @@ import {
     divisionListRequest,
     userInfoRequest
 } from "../apiRequest/apiRequest.js";
-const PostAd = lazy(()=>import("../components/postAd/PostAd.jsx"))
+const PostAd = lazy(()=>import("../components/ad/PostAd.jsx"))
 const PostYourAdPage = () => {
 
     useEffect(() => {

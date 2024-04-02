@@ -12,7 +12,7 @@ import MyAccountPage from "../pages/MyAccountPage.jsx";
 import FavouritesPage from "../pages/FavouritesPage.jsx";
 import SettingsPage from "../pages/SettingsPage.jsx";
 import DetailsPage from "../pages/DetailsPage.jsx";
-
+import UpdateAdPage from "../pages/UpdateAdPage.jsx";
 
 
 const routes = createBrowserRouter([
@@ -47,7 +47,12 @@ const routes = createBrowserRouter([
             {
                 path: "/details/:id",
                 element: <DetailsPage />
-            }
+            },
+            {
+                path: "/update-ad/:id",
+                element: <UpdateAdPage />
+            },
+
         ]
     },
     {
