@@ -2,7 +2,7 @@ import {hideLoader, showLoader} from "../redux/state-slices/settings-slice.js";
 import store from "../redux/store/store.js";
 import {errorMsg, successMsg} from "../utility/formHelper.js";
 import axios from "axios";
-import {setAdDetails, setAdsByCategory, setAllAds, setUserAd} from "../redux/state-slices/ad-slice.js";
+import {setAdDetails, setAdsByCategory, setAllAds, setFavourites, setUserAd} from "../redux/state-slices/ad-slice.js";
 import {setSliders} from "../redux/state-slices/slider-slice.js";
 import {setCategory, setDistrict, setDivision} from "../redux/state-slices/category-slice.js";
 import {setInfo} from "../redux/state-slices/user-slice.js";
@@ -381,5 +381,41 @@ export async function adToFavRequest(postBody){
         store.dispatch(hideLoader());
         errorMsg("Something went wrong!");
         return false
+    }
+}
+
+
+export async function favouriteListRequest(){
+    store.dispatch(showLoader());
+    try {
+        let res = await axios.get(`/favouriteList`,{withCredentials:true});
+        store.dispatch(hideLoader());
+        if(res.data['status'] === 'success'){
+            store.dispatch(hideLoader());
+            store.dispatch(setFavourites(res.data['data']));
+        }
+    }
+    catch (e) {
+        store.dispatch(hideLoader());
+        errorMsg("Something went wrong!");
+    }
+}
+
+
+export async function removeFavouriteRequest(id){
+    store.dispatch(showLoader());
+    try {
+        let res = await axios.get(`/removeFavouriteList/${id}`,{withCredentials:true});
+        store.dispatch(hideLoader());
+        if(res.data['status'] === 'success'){
+            store.dispatch(hideLoader());
+            successMsg("Favourite removed!");
+            return true;
+        }
+    }
+    catch (e) {
+        store.dispatch(hideLoader());
+        errorMsg("Something went wrong!");
+        return true;
     }
 }

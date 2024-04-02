@@ -1,7 +1,7 @@
 import React from 'react';
 import AppNavbar from "./AppNavbar.jsx";
 import Footer from "./Footer.jsx";
-import {Link, Outlet} from "react-router-dom";
+import {Link, NavLink, Outlet} from "react-router-dom";
 import {FaAngleRight} from "react-icons/fa6";
 
 
@@ -17,32 +17,36 @@ const Dashboard = () => {
                           <div className={"w-full"}>
                               <ul className={"text-accent"}>
                                   <li>
-                                      <Link className={"flex items-center justify-between"} to={"/dashboard"}>
+                                      <NavLink className={({ isActive }) => isActive ? "flex items-center justify-between " +
+                                          "text-neutral font-medium" : "flex items-center justify-between"} to={"/dashboard/my-account"}>
                                           <span>My account</span>
                                          <span className={"text-2xl text-gray-500"}> <FaAngleRight /></span>
-                                      </Link>
+                                      </NavLink>
                                   </li>
                                   <div className={"divider"}></div>
                                   <li>
-                                      <Link className={"flex items-center justify-between"} to={"/dashboard/favourites"}>
+                                      <NavLink className={({ isActive }) => isActive ? "flex items-center justify-between " +
+                                          "text-neutral font-medium" : "flex items-center justify-between"} to={"/dashboard/favourites"}>
                                           <span>Favourites</span>
-                                          <span className={"text-2xl text-gray-500"}> <FaAngleRight/></span></Link>
+                                          <span className={"text-2xl text-gray-500"}> <FaAngleRight/></span></NavLink>
                                   </li>
                                   <div className={"divider"}></div>
                                   <li>
-                                      <Link className={"flex items-center justify-between"} to={"/dashboard/settings"}>
+                                      <NavLink className={({ isActive }) => isActive ? "flex items-center justify-between " +
+                                          "text-neutral font-medium" : "flex items-center justify-between"} to={"/dashboard/settings"}>
                                           <span>Settings</span>
                                           <span className={"text-2xl text-gray-500"}> <FaAngleRight/></span>
-                                      </Link>
+                                      </NavLink>
                                   </li>
 
                                   <div  className={"divider"}></div>
 
                                   <li>
-                                      <Link className={"flex items-center justify-between"} to={"/dashboard/my-ad"}>
+                                      <NavLink className={({ isActive }) => isActive ? "flex items-center justify-between " +
+                                          "text-neutral font-medium" : "flex items-center justify-between"} to={"/dashboard/my-ad"}>
                                           <span>My Ads</span>
                                           <span className={"text-2xl text-gray-500"}> <FaAngleRight/></span>
-                                      </Link>
+                                      </NavLink>
                                   </li>
                                   <div className={"divider"}></div>
                               </ul>

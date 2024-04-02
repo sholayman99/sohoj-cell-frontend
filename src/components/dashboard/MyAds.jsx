@@ -5,6 +5,7 @@ import {MdDeleteForever} from "react-icons/md";
 import {FaEye} from "react-icons/fa6";
 import {deleteAd} from "../../utility/deleteAlert.js";
 import {allAdsRequest, userAdsRequest} from "../../apiRequest/apiRequest.js";
+import {useNavigate} from "react-router-dom";
 
 const MyAds = () => {
 
@@ -12,6 +13,11 @@ const MyAds = () => {
     const [isDisable,setIsDisable] = useState(true);
 
     const userDetails = useSelector((state)=>state.user.info);
+    const navigate = useNavigate();
+
+    const seeDetails = (id) => {
+      navigate(`/details/${id}`);
+    }
 
    const removeItem = async (id)=>{
       let res = await deleteAd(id);
@@ -60,10 +66,10 @@ const MyAds = () => {
                                                  <td >
                                                      <button disabled={isDisable} className={"bg-sky-200 p-2 rounded-full text-accent"}>{item['status']}</button>
                                                  </td>
-                                                <td className={"lg:text-2xl text-xl text-gray-600 flex items-center"}>
+                                                <td className={"lg:text-2xl text-xl text-gray-600 flex items-center mt-3"}>
                                                     <button className={"hover:text-accent"}><FaEdit/></button>
                                                     <button onClick={()=>removeItem(item['_id'])} className={"hover:text-error mx-2"}><MdDeleteForever/></button>
-                                                    <button ><FaEye/></button>
+                                                    <button className={"hover:text-primary"} onClick={()=>seeDetails(item['_id'])} ><FaEye/></button>
                                                 </td>
                                                </tr>
                                             )})

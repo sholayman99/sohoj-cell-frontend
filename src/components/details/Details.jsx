@@ -1,13 +1,13 @@
+// eslint-disable-next-line no-unused-vars
 import React, {useState} from 'react';
 import {useSelector} from "react-redux";
 import {CiShare2} from "react-icons/ci";
-import {FaMessage, FaRegStar, FaSquarePhone} from "react-icons/fa6";
+import {FaRegStar, FaSquarePhone} from "react-icons/fa6";
 import {adToFavRequest} from "../../apiRequest/apiRequest.js";
 import {Link, useNavigate} from "react-router-dom";
 import safe from "../../assets/images/safe.png";
-import {MdEmail} from "react-icons/md";
-import {FaMobileAlt} from "react-icons/fa";
-import {ImMail, ImMail4} from "react-icons/im";
+import {ImMail} from "react-icons/im";
+import dateFormat, { masks } from "dateformat";
 
 const Details = () => {
 
@@ -48,12 +48,21 @@ const Details = () => {
 
     return (
         <main className={"bg-base-300 lg:p-20"}>
-            <div className={" bg-base-100 p-5 rounded-md flex flex-col gap-3.5"}>
+            <div className={" bg-base-100 p-5 rounded-md flex flex-col gap-5"}>
                 <section className={"flex items-center justify-between"}>
                     <div>
                         <h2 className={"lg:text-2xl md:text-2xl text-lg text-primary font-semibold"}>{details['productName']}<span
                             className={"text-neutral"}>({details['features']})</span></h2>
-                        <p className={"text-gray-500 mt-2 lg:text-[16px]"}>Posted at {details['createdDate']}</p>
+
+                        <p className={"text-gray-500 mt-2 lg:text-[16px]"}>Posted at
+                            <span
+                                className={"text-neutral"}> {dateFormat(details['createdAt'], "dddd, mmmm d, yyyy , h:MM:ss TT")} </span>
+                            from <span className={"text-neutral"}>{details?.['district']?.['districtName']},</span>
+                            <span className={"text-neutral"}>{details?.['division']?.['divisionName']}</span>
+                        </p>
+                        <p className={"text-gray-500 mt-2 lg:text-[16px]"}>Last modified at
+                                <span className={"text-neutral"}> {dateFormat(details['updatedAt'], "dddd, mmmm d, yyyy, h:MM:ss TT")}</span>
+                        </p>
                     </div>
 
                     <div>
@@ -62,7 +71,7 @@ const Details = () => {
                             <CiShare2/>Share
                         </button>
                         <button onClick={adToFavourite}
-                                className={"btn btn-ghost hover:btn-link hover:font-semibold hover:text-primary text-gray-600 text-[17px] font-light"}>
+                                className={"btn btn-ghost hover:btn-link hover:font-semibold hover:text-secondary text-gray-600 text-[17px] font-light"}>
                             <FaRegStar/>Save ad
                         </button>
                     </div>
@@ -108,6 +117,7 @@ const Details = () => {
                     <section>
 
                         <div>
+                            {/* eslint-disable-next-line react/no-unescaped-entities */}
                             <h3 className={"text-xl font-semibold mb-3"}>Owner's details</h3>
                             <div className={"flex items-center gap-3 border px-5 py-2"}>
                                 <p className={"text-4xl text-primary"}><ImMail/></p>

@@ -59,7 +59,7 @@ const routes = createBrowserRouter([
                 element: <MyAdsPage />
             },
             {
-                path:"/dashboard",
+                path:"/dashboard/my-account",
                 element: <MyAccountPage />
             },
             {
