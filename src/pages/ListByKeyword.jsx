@@ -1,12 +1,24 @@
-import React, {lazy, Suspense} from 'react';
+import React, {lazy, Suspense, useEffect} from 'react';
 import LazyMotion from "../layout/LazyMotion.jsx";
-const ListProduct = lazy(()=>import("../components/common/ListAds.jsx"))
+import {useParams} from "react-router-dom";
+import {adSearchByKeyword} from "../apiRequest/apiRequest.js";
+const ListAds = lazy(()=>import("../components/common/ListAds.jsx"))
 
 const ListByKeyword = () => {
+
+    const {keyword} = useParams();
+
+
+    useEffect(() => {
+        (async ()=>{
+           await adSearchByKeyword(keyword);
+        })()
+    }, [keyword]);
+
     return (
         <>
           <Suspense fallback={<LazyMotion />}>
-              <ListProduct />
+              <ListAds />
           </Suspense>
         </>
     );

@@ -1,9 +1,10 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useSelector} from "react-redux";
 import Slider from "./Slider.jsx";
 import {MdCategory} from "react-icons/md";
 import {FaClipboardQuestion} from "react-icons/fa6";
 import {
+    adListByFilter,
     categoryListRequest,
     districtListRequest,
     divisionListRequest,
@@ -12,19 +13,31 @@ import {Link} from "react-router-dom";
 
 const ListAds = () => {
 
+    const [filter,setFilter] = useState({categoryID:"",districtID:"",divisionID:""})
+
+    const inputOnChange=async(key,value)=>{
+        setFilter((data)=>({
+            ...data,
+            [key]:value
+        }))
+    }
+
     useEffect(() => {
         (async()=>{
             await categoryListRequest();
             await districtListRequest();
             await divisionListRequest();
+
+            let isEveryFilterPropertyEmpty=Object.values(filter).every(value => value==="")
+            !isEveryFilterPropertyEmpty? await adListByFilter(filter):<></>
+
         })()
-    }, []);
+    }, [filter]);
 
     const listAds = useSelector((state)=>state.ads.listAd);
     const categoryList = useSelector((state)=>state.category.categoryList);
     const districtList = useSelector((state)=>state.category.districtList);
     const divisionList = useSelector((state)=>state.category.divisionList);
-
 
     return (
         <main className={"bg-base-200 lg:p-20"}>
@@ -42,7 +55,8 @@ const ListAds = () => {
                 <div className={"divider"}></div>
                 <section className={"flex items-start"}>
                     <div className={"w-full max-w-xs flex flex-col gap-10"}>
-                        <select className="select select-info w-full max-w-md">
+                        <select className="select select-info w-full max-w-md"
+                        onChange={(e)=>inputOnChange("categoryID",e.target.value)}>
                             <option disabled selected>Select Category</option>
                             {
                                 categoryList.map((item, i) => {
@@ -52,22 +66,24 @@ const ListAds = () => {
                                 })
                             }
                         </select>
-                        <select className="select select-info w-full max-w-md">
+                        <select className="select select-info w-full max-w-md"
+                                onChange={(e)=>inputOnChange("districtID",e.target.value)}>
                             <option disabled selected>Select District</option>
                             {
                                 districtList.map((item, i) => {
                                     return (
-                                        <option value={item['_id']} key={i}>{item['district']}</option>
+                                        <option value={item['_id']} key={i}>{item['districtName']}</option>
                                     )
                                 })
                             }
                         </select>
-                        <select className="select select-info w-full max-w-md">
+                        <select className="select select-info w-full max-w-md"
+                                onChange={(e)=>inputOnChange("divisionID",e.target.value)}>
                             <option disabled selected>Select Division</option>
                             {
                                 divisionList.map((item, i) => {
                                     return (
-                                        <option value={item['_id']} key={i}>{item['division']}</option>
+                                        <option value={item['_id']} key={i}>{item['divisionName']}</option>
                                     )
                                 })
                             }

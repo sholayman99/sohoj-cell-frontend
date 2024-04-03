@@ -6,7 +6,7 @@ import {
     setAdDetails,
     setAdsByCategory,
     setAllAds,
-    setFavourites,
+    setFavourites, setFilterAd, setKeywordAds,
     setSingleAd,
     setUserAd
 } from "../redux/state-slices/ad-slice.js";
@@ -461,5 +461,40 @@ export async function removeFavouriteRequest(id){
         store.dispatch(hideLoader());
         errorMsg("Something went wrong!");
         return false;
+    }
+}
+
+
+
+export async function adSearchByKeyword(keyword){
+    store.dispatch(showLoader());
+    try {
+        let res = await axios.get(`/searchByKeyword/${keyword}`);
+        store.dispatch(hideLoader());
+        if(res.data['status'] === 'success'){
+            store.dispatch(hideLoader());
+            store.dispatch(setKeywordAds(res.data['data']));
+        }
+    }
+    catch (e) {
+        store.dispatch(hideLoader());
+        errorMsg("Something went wrong!");
+    }
+}
+
+
+export async function adListByFilter(postBody){
+    store.dispatch(showLoader());
+    try {
+        let res = await axios.post(`/filterAd`,postBody);
+        store.dispatch(hideLoader());
+        if(res.data['status'] === 'success'){
+            store.dispatch(hideLoader());
+            store.dispatch(setFilterAd(res.data['data']));
+        }
+    }
+    catch (e) {
+        store.dispatch(hideLoader());
+        errorMsg("Something went wrong!");
     }
 }

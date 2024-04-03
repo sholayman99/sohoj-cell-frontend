@@ -52,7 +52,6 @@ const Footer = () => {
                     <a className="link link-info link-hover">Privacy Policy</a>
                     <a className="link link-info link-hover">Sitemap</a>
                 </nav>
-                <div className={"divider"}></div>
             </section>
             <div className={"divider"}></div>
             <section className="flex items-center justify-between pb-4 bg-base-100">

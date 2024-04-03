@@ -1,13 +1,30 @@
-import React from 'react';
-import {FaSearch} from "react-icons/fa";
+import React, {useState} from 'react';
+import {useNavigate} from "react-router-dom";
+import {errorMsg} from "../../utility/formHelper.js";
 
 const Search = () => {
+
+    const [searchKeyword,setSearchKeyword] = useState("");
+    const navigate = useNavigate();
+
+    const searchProduct = ()=>{
+           if(searchKeyword.length>0){
+               navigate(`/list-by-keyword/${searchKeyword}`);
+           }
+           else {
+               errorMsg("Search field can't be empty!")
+               navigate('/')
+           }
+    }
+
+
     return (
         <section className={"bg-primary lg:h-[30vh] h-[20vh] flex justify-center items-center"}>
             <label
                 className="input focus:outline-none relative  rounded-full flex lg:h-16 md:h-16 h-14 w-[90%] md:w-[70%] lg:w-[60%] items-center gap-2">
-                <input type="text" className="" placeholder="What are you looking for?"/>
-                <button className="btn absolute right-2 btn-circle btn-secondary text-orange-800">
+                <input type="text" className="" placeholder="What are you looking for?"
+                    onChange={(e)=>setSearchKeyword(e.target.value)}/>
+                <button onClick={searchProduct} className="btn absolute right-2 btn-circle btn-secondary text-orange-800">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"
                          className="w-7 h-7">
                         <path fillRule="evenodd"

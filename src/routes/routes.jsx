@@ -13,6 +13,7 @@ import FavouritesPage from "../pages/FavouritesPage.jsx";
 import SettingsPage from "../pages/SettingsPage.jsx";
 import DetailsPage from "../pages/DetailsPage.jsx";
 import UpdateAdPage from "../pages/UpdateAdPage.jsx";
+import ListByKeyword from "../pages/ListByKeyword.jsx";
 
 
 const routes = createBrowserRouter([
@@ -52,6 +53,10 @@ const routes = createBrowserRouter([
                 path: "/update-ad/:id",
                 element: <UpdateAdPage />
             },
+            {
+                path: "/list-by-keyword/:keyword",
+                element: <ListByKeyword />
+            }
 
         ]
     },
