@@ -10,6 +10,7 @@ import {
     divisionListRequest,
 } from "../../apiRequest/apiRequest.js";
 import {Link} from "react-router-dom";
+import dateFormat from "dateformat";
 
 const ListAds = () => {
 
@@ -101,10 +102,11 @@ const ListAds = () => {
                                             <img className={"w-48"} src={item['image']} alt={""} />
                                             <div className="flex flex-col gap-1">
                                                 <h3 className={"text-2xl font-semibold"}>{item['productName']}
-                                                    <span className={"text-sm text-gray-600 font-medium"}>({item['features']})</span>
                                                 </h3>
                                                 <p className={"text-gray-600 font-semibold"}>{item['brandName']}</p>
-                                                <p className={"text-gray-600"}>{item?.['district']?.['districtName']},{item?.['division']?.['divisionName']}</p>
+                                                <p className={"text-gray-600"}>{item?.['district']?.['districtName']},
+                                                    {item?.['division']?.['divisionName']} at
+                                                 <span className={"text-[#000]"}> {dateFormat(item['createdAt'], "dddd, mmmm d, yyyy, h:MM:ss TT")}</span></p>
                                                 <h4 className={"text-lg text-primary font-semibold"}>TK {item['price']}</h4>
                                             </div>
                                         </Link>

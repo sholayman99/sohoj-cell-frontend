@@ -74,7 +74,7 @@ const navigate = useNavigate()
                             {
                                 districtList.map((item, i) => {
                                     return (
-                                        <option  value={item['_id']} key={i}>{item['district']}</option>
+                                        <option  value={item['_id']} key={i}>{item['districtName']}</option>
                                     )
                                 })
                             }
@@ -84,7 +84,7 @@ const navigate = useNavigate()
                             {
                                 divisionList.map((item, i) => {
                                     return (
-                                        <option  value={item['_id']} key={i}>{item['division']}</option>
+                                        <option  value={item['_id']} key={i}>{item['divisionName']}</option>
                                     )
                                 })
                             }
@@ -244,7 +244,7 @@ const navigate = useNavigate()
                         <h2 className={"text-xl font-semibold"}>Contact details </h2>
                         <div>
                             <p className={"text-gray-600"}>Name</p>
-                            <h4 className={"text-[16px]"}>{userInfo['fName']} {userInfo['lName']}</h4>
+                            <h4 className={"text-[16px]"}>{userInfo['fullName']}</h4>
                         </div>
                         <div>
                             <p className={"text-gray-600"}>Email</p>

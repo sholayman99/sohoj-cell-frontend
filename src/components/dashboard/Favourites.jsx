@@ -16,12 +16,12 @@ const Favourites = () => {
     }
 
     return (
-        <main className={"min-h-[30vh]"}>
-            <h3 className={"text-xl font-semibold"}>Favourites</h3>
+        <main className={""}>
+            <h3 className={"text-2xl font-medium"}>Favourites</h3>
             <div className={"divider"}></div>
             {
                 favouriteList.length === 0 ? (
-                    <section className={"flex items-center gap-10"}>
+                    <section className={"flex items-center justify-center gap-10"}>
                         <div className={"text-[8rem] text-secondary"}>
                             <FaStar/>
                         </div>
@@ -37,7 +37,7 @@ const Favourites = () => {
                         </div>
                     </section>
                 ) : (
-                    <section className={"grid grid-cols-1"}>
+                    <section className={"grid grid-rows-1 gap-5"}>
                         {
                             favouriteList.map((item, i) => {
                                 return (

@@ -10,7 +10,6 @@ import {useNavigate} from "react-router-dom";
 const MyAds = () => {
 
     const userAds = useSelector((state)=>state.ads.userAd);
-    const [isDisable,setIsDisable] = useState(true);
 
     const userDetails = useSelector((state)=>state.user.info);
     const navigate = useNavigate();
@@ -31,18 +30,10 @@ const MyAds = () => {
         navigate(`/update-ad/${id}`);
    }
 
-    useEffect(() => {
-        if(userDetails['role'] === "admin"){
-            setIsDisable(false);
-        }
-        else {
-            setIsDisable(true);
-        }
-    }, []);
 
     return (
         <main>
-            <h2 className={'text-xl font-semibold'}>Your Ads List</h2>
+            <h2 className={'text-2xl font-medium'}>Your Ads List</h2>
             <div className={"divider"}></div>
             <section className={" grid grid-cols-1 gap-5"}>
                 <div  className="overflow-x-auto">
@@ -69,7 +60,20 @@ const MyAds = () => {
                                                   <td className={"font-semibold text-gray-600 text-[16px]"}>{item['productName']}</td>
                                                   <td className={"font-light"}>{item['createdDate']}</td>
                                                  <td >
-                                                     <button disabled={isDisable} className={"bg-sky-200 p-2 rounded-full text-accent"}>{item['status']}</button>
+                                                     {
+                                                         item?.status === "Approved"?
+                                                             (<button disabled className={"bg-green-100 font-medium p-2 rounded-full text-primary"}>
+                                                                 {item['status']}
+                                                             </button>)
+                                                             : item?.status === "Pending"?
+                                                             (<button disabled className={"bg-yellow-100 font-medium p-2 rounded-full text-orange-500"}>
+                                                                 {item['status']}
+                                                             </button>)
+                                                                 :
+                                                             <button disabled className={"bg-red-100 font-medium p-2 rounded-full text-error"}>
+                                                                 {item['status']}
+                                                             </button>
+                                                     }
                                                  </td>
                                                 <td className={"lg:text-2xl text-xl text-gray-600 flex items-center mt-3"}>
                                                     <button onClick={()=>updateAd(item['_id'])} className={"hover:text-accent"}><FaEdit/></button>

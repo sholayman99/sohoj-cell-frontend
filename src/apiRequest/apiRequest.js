@@ -3,6 +3,7 @@ import store from "../redux/store/store.js";
 import {errorMsg, successMsg} from "../utility/formHelper.js";
 import axios from "axios";
 import {
+    setAdByStatus,
     setAdDetails,
     setAdsByCategory,
     setAllAds,
@@ -12,8 +13,8 @@ import {
 } from "../redux/state-slices/ad-slice.js";
 import {setSliders} from "../redux/state-slices/slider-slice.js";
 import {setCategory, setDistrict, setDivision} from "../redux/state-slices/category-slice.js";
-import {setInfo} from "../redux/state-slices/user-slice.js";
-import {removeSession, setRole, setUserInfo} from "../utility/sessionHelper.js";
+import {setAdsCount, setCategoryCount, setInfo, setUserCount} from "../redux/state-slices/user-slice.js";
+import {getRole, removeSession, setRole, setUserInfo} from "../utility/sessionHelper.js";
 
 
 export async function registrationRequest(fullName,email,password,photo,mobile){
@@ -491,6 +492,68 @@ export async function adListByFilter(postBody){
         if(res.data['status'] === 'success'){
             store.dispatch(hideLoader());
             store.dispatch(setFilterAd(res.data['data']));
+        }
+    }
+    catch (e) {
+        store.dispatch(hideLoader());
+        errorMsg("Something went wrong!");
+    }
+}
+
+const role = getRole();
+
+export async function adListByStatusRequest(status){
+    store.dispatch(showLoader());
+    try {
+        let res = await axios.get(`/admin/adByStatusList/${status}`,{withCredentials:true,
+            headers: {
+               role:role
+            }});
+        console.log(res)
+        store.dispatch(hideLoader());
+        if(res.data['status'] === 'success'){
+            store.dispatch(hideLoader());
+            store.dispatch(setAdByStatus(res.data['data']));
+        }
+    }
+    catch (e) {
+        store.dispatch(hideLoader());
+        errorMsg("Something went wrong!");
+    }
+}
+
+export async function adStatusUpdateRequest(id,status){
+    store.dispatch(showLoader());
+    try {
+        let res = await axios.get(`/admin/updateAdStatus/${id}/${status}`,{withCredentials:true,
+            headers: {
+                role:role
+            }});
+        store.dispatch(hideLoader());
+        if(res.data['status'] === 'success'){
+            store.dispatch(hideLoader());
+            successMsg("Status updated!");
+            return true
+        }
+    }
+    catch (e) {
+        store.dispatch(hideLoader());
+        errorMsg("Something went wrong!");
+        return false
+    }
+}
+
+
+export async function countRequest(){
+    store.dispatch(showLoader());
+    try {
+        let res = await axios.get(`/count`,{withCredentials:true});
+        store.dispatch(hideLoader());
+        if(res.data['status'] === 'success'){
+            store.dispatch(hideLoader());
+            store.dispatch(setUserCount(res.data['user']));
+            store.dispatch(setAdsCount(res.data['ads']));
+            store.dispatch(setCategoryCount(res.data['categories']));
         }
     }
     catch (e) {

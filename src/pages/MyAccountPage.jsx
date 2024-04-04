@@ -7,9 +7,9 @@ const MyAccountPage = () => {
     let userInfo = getUserInfo();
     return (
         <main>
-           <h2 className={'text-xl font-semibold'}>{userInfo['fName']} {userInfo['lName']}</h2>
+           <h2 className={'text-2xl font-medium'}>{userInfo['fullName']}</h2>
             <div className={"divider"}></div>
-            <section className={"flex flex-col justify-center items-center gap-5 h-[50vh]"}>
+            <section className={"flex flex-col justify-center items-center gap-5"}>
                <h3 className={"text-xl font-semibold"}>You don't have any ads yet!</h3>
                 <p className={"text-gray-500"}>Click the Post an ad now! button to post your ad.</p>
                 <div className={"text-5xl text-secondary"}>

@@ -110,7 +110,7 @@ const Settings = () => {
 
     return (
         <main>
-            <h2 className={'text-2xl font-semibold'}>Settings</h2>
+            <h2 className={'text-2xl font-medium'}>Settings</h2>
             <div className={"divider"}></div>
 
 

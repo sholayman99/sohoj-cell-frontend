@@ -1,4 +1,4 @@
-import {createBrowserRouter} from "react-router-dom";
+import {createBrowserRouter, Navigate} from "react-router-dom";
 import Main from "../layout/Main.jsx";
 import HomePage from "../pages/HomePage.jsx";
 import LoginPage from "../pages/LoginPage.jsx";
@@ -14,6 +14,11 @@ import SettingsPage from "../pages/SettingsPage.jsx";
 import DetailsPage from "../pages/DetailsPage.jsx";
 import UpdateAdPage from "../pages/UpdateAdPage.jsx";
 import ListByKeyword from "../pages/ListByKeyword.jsx";
+import AdListByStatusPage from "../pages/AdListByStatusPage.jsx";
+import PrivateRoute from "../components/route/PrivateRoute.jsx";
+import DashBoard from "../components/dashboard/DashBoard.jsx";
+
+
 
 
 const routes = createBrowserRouter([
@@ -39,7 +44,7 @@ const routes = createBrowserRouter([
             },
             {
                 path:"/create-ad",
-                element:<PostYourAdPage />
+                element: <PrivateRoute Component={PostYourAdPage} />
             },
             {
                 path:"/list-by-category/:categoryID",
@@ -51,7 +56,7 @@ const routes = createBrowserRouter([
             },
             {
                 path: "/update-ad/:id",
-                element: <UpdateAdPage />
+                element: <PrivateRoute Component={UpdateAdPage} />
             },
             {
                 path: "/list-by-keyword/:keyword",
@@ -62,8 +67,12 @@ const routes = createBrowserRouter([
     },
     {
         path:'/dashboard',
-        element: <Dashboard />,
+        element: <PrivateRoute Component={Dashboard} />,
         children:[
+            {
+               path: "/dashboard",
+               element: <DashBoard />
+            },
             {
                 path: "/dashboard/my-ad",
                 element: <MyAdsPage />
@@ -84,6 +93,10 @@ const routes = createBrowserRouter([
                 path:"/dashboard/my-ad",
                 element: <MyAdsPage />
             },
+            {
+                path: "/dashboard/ad-list-byStatus",
+                element: <AdListByStatusPage />
+            }
 
         ]
     }

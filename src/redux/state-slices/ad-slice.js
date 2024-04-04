@@ -10,6 +10,7 @@ export const adSlice = createSlice({
        details:[],
        favourites:[],
        singleAd:[],
+       adByStatus:[]
     },
     reducers:{
         setAdsByCategory:(state,action)=>{
@@ -39,6 +40,9 @@ export const adSlice = createSlice({
         },
         setSingleAd:(state,action)=>{
             state.singleAd = action.payload;
+        },
+        setAdByStatus:(state,action)=>{
+         state.adByStatus = action.payload;
         }
     }
 });
@@ -46,5 +50,5 @@ export const adSlice = createSlice({
 export const {setAdsByCategory,setAllAds,
     setUserAd,setAdDetails,
     setFavourites,setSingleAd,setKeywordAds
-    ,setFilterAd} = adSlice.actions;
+    ,setFilterAd,setAdByStatus} = adSlice.actions;
 export default adSlice.reducer;

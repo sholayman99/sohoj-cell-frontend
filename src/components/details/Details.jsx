@@ -51,8 +51,7 @@ const Details = () => {
             <div className={" bg-base-100 p-5 rounded-md flex flex-col gap-5"}>
                 <section className={"flex items-center justify-between"}>
                     <div>
-                        <h2 className={"lg:text-2xl md:text-2xl text-lg text-primary font-semibold"}>{details['productName']}<span
-                            className={"text-neutral"}>({details['features']})</span></h2>
+                        <h2 className={"lg:text-2xl md:text-2xl text-lg text-primary font-semibold"}>{details['productName']}</h2>
 
                         <p className={"text-gray-500 mt-2 lg:text-[16px]"}>Posted at
                             <span
@@ -103,8 +102,21 @@ const Details = () => {
                                     <p className={"text-gray-500 text-[16px]"}>Authenticity: <span
                                         className={"text-neutral"}>{details['authenticity']}</span></p>
                                 </div>
-
-                                <div className={"mt-5"}>
+                                 <div className={"my-5"}>
+                                     <p className={"text-gray-500 text-[16px]"}>Features:</p>
+                                     <ul className={"list-disc list-inside"}>
+                                         {
+                                             details?.features.split(",").map((text,i)=>{
+                                                 return(
+                                                     <li key={i}>
+                                                         {text}
+                                                     </li>
+                                                 )
+                                             })
+                                         }
+                                     </ul>
+                                 </div>
+                                <div>
                                     <h4 className={"font-semibold text-[16px]"}>Description:</h4>
                                     <p className={"text-gray-500"}> {details['description']}</p>
                                 </div>
