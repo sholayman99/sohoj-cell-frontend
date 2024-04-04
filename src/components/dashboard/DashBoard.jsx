@@ -55,7 +55,7 @@ const DashBoard = () => {
                     </div>
                 </section>
 
-                <section className={"grid lg:grid-cols-2 gap-8"}>
+                <section className={"grid lg:grid-cols-2 gap-8 lg:pr-10 md:pr-3 pr-1"}>
                     <DataChart/>
                     <DataAreaChart />
                     <DataPiChart />

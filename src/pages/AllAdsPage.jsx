@@ -1,13 +1,14 @@
 import React, {lazy, Suspense, useEffect} from 'react';
 import {allAdsRequest} from "../apiRequest/apiRequest.js";
 import LazyMotion from "../layout/LazyMotion.jsx";
+import {useParams} from "react-router-dom";
 const ListAds = lazy(()=>import("../components/common/ListAds.jsx"))
 
 const AllAdsPage = () => {
 
     useEffect(() => {
         (async()=>{
-            await allAdsRequest();
+            await allAdsRequest(1,5);
         })()
     }, []);
 

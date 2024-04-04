@@ -17,6 +17,7 @@ import ListByKeyword from "../pages/ListByKeyword.jsx";
 import AdListByStatusPage from "../pages/AdListByStatusPage.jsx";
 import PrivateRoute from "../components/route/PrivateRoute.jsx";
 import DashBoard from "../components/dashboard/DashBoard.jsx";
+import UserListPage from "../pages/UserListPage.jsx";
 
 
 
@@ -96,6 +97,10 @@ const routes = createBrowserRouter([
             {
                 path: "/dashboard/ad-list-byStatus",
                 element: <AdListByStatusPage />
+            },
+            {
+                path: "/dashboard/user-list",
+                element: <UserListPage />
             }
 
         ]

@@ -84,6 +84,16 @@ const Dashboard = () => {
                                                           <span className={"text-2xl"}> <FaAngleRight/></span>
                                                       </NavLink>
                                                   </li>
+                                                  <div className={"divider"}></div>
+                                                  <li>
+                                                      <NavLink
+                                                          className={({isActive}) => isActive ? "flex items-center justify-between " +
+                                                              "text-[#000] font-semibold" : "flex items-center justify-between"}
+                                                          to={"/dashboard/user-list"}>
+                                                          <span>UserList</span>
+                                                          <span className={"text-2xl"}> <FaAngleRight/></span>
+                                                      </NavLink>
+                                                  </li>
                                               </ul>
                                           </div>
                                       ) :

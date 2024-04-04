@@ -8,6 +8,7 @@ export const userSlice = createSlice({
         userCount:[],
         adsCount:[],
         categoryCount:[],
+        userList:[]
     },
     reducers:{
         setInfo:(state,action)=>{
@@ -23,10 +24,14 @@ export const userSlice = createSlice({
         setCategoryCount:(state,action)=>{
             state.categoryCount = action.payload
         },
+        setUserList:(state,action)=>{
+            state.userList = action.payload
+        },
 
     }
 });
 
 export const {setInfo,setUserCount,
-    setAdsCount,setCategoryCount} = userSlice.actions;
+    setAdsCount,setCategoryCount,
+    setUserList} = userSlice.actions;
 export default userSlice.reducer;

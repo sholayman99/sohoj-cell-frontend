@@ -4,13 +4,14 @@ import Slider from "./Slider.jsx";
 import {MdCategory} from "react-icons/md";
 import {FaClipboardQuestion} from "react-icons/fa6";
 import {
-    adListByFilter,
+    adListByFilter, allAdsRequest,
     categoryListRequest,
     districtListRequest,
     divisionListRequest,
 } from "../../apiRequest/apiRequest.js";
 import {Link} from "react-router-dom";
 import dateFormat from "dateformat";
+import ReactPaginate from "react-paginate";
 
 const ListAds = () => {
 
@@ -21,6 +22,10 @@ const ListAds = () => {
             ...data,
             [key]:value
         }))
+    }
+
+    const handlePageClick = async (event)=>{
+         await allAdsRequest(event.selected+1,5)
     }
 
     useEffect(() => {
@@ -36,6 +41,7 @@ const ListAds = () => {
     }, [filter]);
 
     const listAds = useSelector((state)=>state.ads.listAd);
+    const total = useSelector((state)=>state.ads.totalAd);
     const categoryList = useSelector((state)=>state.category.categoryList);
     const districtList = useSelector((state)=>state.category.districtList);
     const divisionList = useSelector((state)=>state.category.divisionList);
@@ -115,6 +121,22 @@ const ListAds = () => {
                             }
                         </div>
                     </div>
+                </section>
+                <section className="flex justify-center items-center mt-4">
+                    <ReactPaginate
+                        pageCount={total/5}
+                        onPageChange={handlePageClick}
+                        previousLabel={'<'}
+                        nextLabel={'>'}
+                        breakLabel={'...'}
+                        marginPagesDisplayed={2}
+                        pageRangeDisplayed={5}
+                        containerClassName={'pagination'}
+                        activeClassName={'active'}
+                        previousClassName={'prev'}
+                        nextClassName={'next'}
+                        pageClassName={'page'}
+                    />
                 </section>
             </div>
         </main>

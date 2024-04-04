@@ -15,7 +15,6 @@ const Login = () => {
         let  email     =  emailRef.value;
         let  password  =  passRef.value;
 
-
        if(!isEmail(email)){
             errorMsg("Provide a valid email!");
         }

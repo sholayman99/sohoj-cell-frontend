@@ -8,12 +8,12 @@ import {
     setAdsByCategory,
     setAllAds,
     setFavourites, setFilterAd, setKeywordAds,
-    setSingleAd,
+    setSingleAd, setTotalAd,
     setUserAd
 } from "../redux/state-slices/ad-slice.js";
 import {setSliders} from "../redux/state-slices/slider-slice.js";
 import {setCategory, setDistrict, setDivision} from "../redux/state-slices/category-slice.js";
-import {setAdsCount, setCategoryCount, setInfo, setUserCount} from "../redux/state-slices/user-slice.js";
+import {setAdsCount, setCategoryCount, setInfo, setUserCount, setUserList} from "../redux/state-slices/user-slice.js";
 import {getRole, removeSession, setRole, setUserInfo} from "../utility/sessionHelper.js";
 
 
@@ -157,13 +157,14 @@ export async function sliderListRequest(){
 
 
 
-export async function allAdsRequest(){
+export async function allAdsRequest(pageNo,perPage){
     store.dispatch(showLoader());
     try {
-        let res = await axios.get('/adList');
+        let res = await axios.get(`/adList/${pageNo}/${perPage}`);
         store.dispatch(hideLoader());
         if(res.data['status'] === 'success'){
             store.dispatch(setAllAds(res.data['data']));
+            store.dispatch(setTotalAd(res.data['total']));
         }
         else{
             errorMsg("Server error!")
@@ -542,6 +543,26 @@ export async function adStatusUpdateRequest(id,status){
         return false
     }
 }
+
+export async function userListRequest(){
+    store.dispatch(showLoader());
+    try {
+        let res = await axios.get(`/userList`,{withCredentials:true,
+            headers: {
+                role:role
+            }});
+        store.dispatch(hideLoader());
+        if(res.data['status'] === 'success'){
+            store.dispatch(hideLoader());
+            store.dispatch(setUserList(res.data['data']));
+        }
+    }
+    catch (e) {
+        store.dispatch(hideLoader());
+        errorMsg("Something went wrong!");
+    }
+}
+
 
 
 export async function countRequest(){

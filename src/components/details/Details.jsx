@@ -106,7 +106,7 @@ const Details = () => {
                                      <p className={"text-gray-500 text-[16px]"}>Features:</p>
                                      <ul className={"list-disc list-inside"}>
                                          {
-                                             details?.features.split(",").map((text,i)=>{
+                                             details?.features?.split(",").map((text,i)=>{
                                                  return(
                                                      <li key={i}>
                                                          {text}
