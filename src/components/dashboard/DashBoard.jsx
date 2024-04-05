@@ -27,7 +27,7 @@ const DashBoard = () => {
                 <h3>Dashboard</h3>
             </div>
             <div className={"divider"}></div>
-            <div className={"flex flex-col gap-16"}>
+            <div className={"flex flex-col gap-[8rem]"}>
                 <section
                     className={"grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 text-base-100 justify-between lg:px-10 md:px-3 px-1 items-center gap-5"}>
                     <div className={"flex items-center gap-3 bg-[#4ADDC0] p-5 rounded-md"}>
@@ -55,7 +55,7 @@ const DashBoard = () => {
                     </div>
                 </section>
 
-                <section className={"grid lg:grid-cols-2 gap-8 lg:pr-10 md:pr-3 pr-1"}>
+                <section className={"grid lg:grid-cols-2 grid-cols-1 gap-8 lg:pr-10 md:pr-3"}>
                     <DataChart/>
                     <DataAreaChart />
                     <DataPiChart />

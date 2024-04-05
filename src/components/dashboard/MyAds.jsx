@@ -11,7 +11,6 @@ const MyAds = () => {
 
     const userAds = useSelector((state)=>state.ads.userAd);
 
-    const userDetails = useSelector((state)=>state.user.info);
     const navigate = useNavigate();
 
     const seeDetails = (id) => {
@@ -22,7 +21,7 @@ const MyAds = () => {
       let res = await deleteAd(id);
       if(res === true){
           await userAdsRequest();
-          await allAdsRequest();
+          await allAdsRequest(1,5);
       }
    }
 

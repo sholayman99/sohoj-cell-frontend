@@ -15,15 +15,15 @@ const DataPiChart = () => {
     ];
 
     return (
-        <ResponsiveContainer width="100%" height="100%" aspect={300 / 300}>
-            <PieChart width={300} height={300}>
+        <ResponsiveContainer width="100%" height="100%" aspect={300/300}>
+            <PieChart width={200} height={200}>
                 <Pie
                     data={data}
                     dataKey="value"
                     nameKey="date"
                     cx="50%"
                     cy="40%"
-                    outerRadius={150}
+                    outerRadius={90}
                     fill="#ff5959"
                     label
                 />

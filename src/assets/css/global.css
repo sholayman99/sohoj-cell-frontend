@@ -52,14 +52,15 @@ a:hover {
 }
 .page {
     margin-right: 0.5rem;
-    padding: 0.25rem 0.5rem;
+    padding: 0.25rem 0.8rem;
     border: 1px solid #cbd5e0;
     color: #4a5568;
     cursor: pointer;
     transition: background-color 0.2s ease;
+    font-size: 16px;
 }
 .page:hover {
-    background-color: #edf2f7;
+    background-color: #d3dbe7;
 }
 .active {
     background-color: #4299e1;

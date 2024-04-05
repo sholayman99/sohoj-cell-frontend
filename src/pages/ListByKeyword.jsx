@@ -11,7 +11,7 @@ const ListByKeyword = () => {
 
     useEffect(() => {
         (async ()=>{
-           await adSearchByKeyword(keyword);
+           await adSearchByKeyword(1,5,keyword);
         })()
     }, [keyword]);
 

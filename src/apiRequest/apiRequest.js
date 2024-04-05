@@ -468,14 +468,15 @@ export async function removeFavouriteRequest(id){
 
 
 
-export async function adSearchByKeyword(keyword){
+export async function adSearchByKeyword(pageNo,perPage,keyword){
     store.dispatch(showLoader());
     try {
-        let res = await axios.get(`/searchByKeyword/${keyword}`);
+        let res = await axios.get(`/searchByKeyword/${pageNo}/${perPage}/${keyword}`);
         store.dispatch(hideLoader());
         if(res.data['status'] === 'success'){
             store.dispatch(hideLoader());
             store.dispatch(setKeywordAds(res.data['data']));
+            store.dispatch(setTotalAd(res.data['total']));
         }
     }
     catch (e) {
@@ -489,6 +490,7 @@ export async function adListByFilter(postBody){
     store.dispatch(showLoader());
     try {
         let res = await axios.post(`/filterAd`,postBody);
+        console.log(res.data)
         store.dispatch(hideLoader());
         if(res.data['status'] === 'success'){
             store.dispatch(hideLoader());
@@ -580,5 +582,26 @@ export async function countRequest(){
     catch (e) {
         store.dispatch(hideLoader());
         errorMsg("Something went wrong!");
+    }
+}
+
+export async function removeUserRequest(id){
+    store.dispatch(showLoader());
+    try {
+        let res = await axios.get(`/admin/removeUser/${id}`,{withCredentials:true,
+            headers: {
+                role:role
+            }});
+        store.dispatch(hideLoader());
+        if(res.data['status'] === 'success'){
+            store.dispatch(hideLoader());
+            successMsg("remove user success!");
+            return true;
+        }
+    }
+    catch (e) {
+        store.dispatch(hideLoader());
+        errorMsg("Something went wrong!");
+        return false;
     }
 }

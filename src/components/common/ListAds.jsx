@@ -4,18 +4,20 @@ import Slider from "./Slider.jsx";
 import {MdCategory} from "react-icons/md";
 import {FaClipboardQuestion} from "react-icons/fa6";
 import {
-    adListByFilter, allAdsRequest,
+    adListByFilter, adSearchByKeyword, allAdsRequest,
     categoryListRequest,
     districtListRequest,
     divisionListRequest,
 } from "../../apiRequest/apiRequest.js";
-import {Link} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import dateFormat from "dateformat";
 import ReactPaginate from "react-paginate";
 
 const ListAds = () => {
 
     const [filter,setFilter] = useState({categoryID:"",districtID:"",divisionID:""})
+    const {keyword} = useParams();
+
 
     const inputOnChange=async(key,value)=>{
         setFilter((data)=>({
@@ -25,7 +27,12 @@ const ListAds = () => {
     }
 
     const handlePageClick = async (event)=>{
-         await allAdsRequest(event.selected+1,5)
+        if(keyword){
+            await adSearchByKeyword(event.selected+1,5,keyword)
+        }
+        else{
+            await allAdsRequest(event.selected+1,5)
+        }
     }
 
     useEffect(() => {
@@ -36,7 +43,6 @@ const ListAds = () => {
 
             let isEveryFilterPropertyEmpty=Object.values(filter).every(value => value==="")
             !isEveryFilterPropertyEmpty? await adListByFilter(filter):<></>
-
         })()
     }, [filter]);
 
@@ -46,22 +52,23 @@ const ListAds = () => {
     const districtList = useSelector((state)=>state.category.districtList);
     const divisionList = useSelector((state)=>state.category.divisionList);
 
+
     return (
         <main className={"bg-base-200 lg:p-20"}>
             <div className={"bg-base-100 p-4 rounded-md"}>
                 <section className={"flex items-center gap-24"}>
-                    <div className={"flex text-lg font-semibold text-gray-700 items-center gap-1"}>
+                    <div className={"flex lg:text-lg text-sm lg:text-lg font-semibold text-gray-700 items-center gap-1"}>
                         <FaClipboardQuestion/>
                         <h2>What are you looking for?</h2>
                     </div>
-                    <div className={"flex text-lg font-semibold text-gray-700 items-center gap-1"}>
+                    <div className={"flex lg:text-lg text-sm md:text-lg font-semibold text-gray-700 items-center gap-1"}>
                         <MdCategory/>
                         <h2>Select Category</h2>
                     </div>
                 </section>
                 <div className={"divider"}></div>
-                <section className={"flex items-start"}>
-                    <div className={"w-full max-w-xs flex flex-col gap-10"}>
+                <section className={"flex flex-col lg:flex-row lg:items-start"}>
+                    <div className={"w-full lg:max-w-xs max-w-full flex lg:flex-col md:flex-row flex-col gap-10"}>
                         <select className="select select-info w-full max-w-md"
                         onChange={(e)=>inputOnChange("categoryID",e.target.value)}>
                             <option disabled selected>Select Category</option>
@@ -122,7 +129,7 @@ const ListAds = () => {
                         </div>
                     </div>
                 </section>
-                <section className="flex justify-center items-center mt-4">
+                <section className="flex justify-center items-center lg:mt-8 mt-5">
                     <ReactPaginate
                         pageCount={total/5}
                         onPageChange={handlePageClick}

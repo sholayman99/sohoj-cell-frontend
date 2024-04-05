@@ -23,17 +23,17 @@ const AdListByStatus = () => {
             <h2 className={'text-2xl font-medium'}>Ads List</h2>
             <div className={"divider"}></div>
             <section className={"flex justify-center items-center mb-5"}>
-                <div className="join join-vertical md:join-horizontal lg:join-horizontal">
-                    <input className="join-item btn" type="radio" name="options" aria-label="All"
+                <div className="join join-horizontal">
+                    <input className="join-item btn lg:btn-md md:btn-sm btn-xs" type="radio" name="options" aria-label="All"
                            onClick={async () => await adListByStatusRequest("all")}/>
-                    <div className={"divider md:divider-horizontal lg:divider-horizontal"}></div>
-                    <input className="join-item btn" type="radio" name="options" aria-label="Approved"
+                    <div className={"divider divider-horizontal"}></div>
+                    <input className="join-item btn lg:btn-md md:btn-sm btn-xs" type="radio" name="options" aria-label="Approved"
                            onClick={async () => await adListByStatusRequest("Approved")}/>
-                    <div className={"divider md:divider-horizontal lg:divider-horizontal"}></div>
-                    <input className="join-item btn" type="radio" name="options" aria-label="Pending"
+                    <div className={"divider divider-horizontal"}></div>
+                    <input className="join-item btn lg:btn-md md:btn-sm btn-xs" type="radio" name="options" aria-label="Pending"
                            onClick={async () => await adListByStatusRequest("Pending")}/>
-                    <div className={"divider md:divider-horizontal lg:divider-horizontal"}></div>
-                    <input className="join-item btn" type="radio" name="options" aria-label="Canceled"
+                    <div className={"divider divider-horizontal"}></div>
+                    <input className="join-item btn lg:btn-md md:btn-sm btn-xs" type="radio" name="options" aria-label="Canceled"
                            onClick={async () => await adListByStatusRequest("Canceled")}/>
                 </div>
             </section>

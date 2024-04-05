@@ -1,12 +1,19 @@
 import React from 'react';
 import {useSelector} from "react-redux";
 import dateFormat, { masks } from "dateformat";
+import {userListRequest} from "../../apiRequest/apiRequest.js";
+import {removeUser} from "../../utility/removeUser.js";
 
 const UserList = () => {
 
     const userList = useSelector((state)=>state.user.userList);
 
-    console.log(userList)
+    const deleteUser =async (id)=>{
+       let res = await removeUser(id);
+       if(res === true){
+           await userListRequest();
+       }
+    }
 
     return (
         <main>
@@ -55,9 +62,9 @@ const UserList = () => {
                                     </td>
                                     <td>
                                         {
-                                            item['role'] === "admin"?(<span className="badge bg-sky-200 badge-sm">{item?.['role']}</span>)
+                                            item['role'] === "admin"?(<span className="badge bg-sky-100 text-primary badge-sm">{item?.['role']}</span>)
                                                 :
-                                                (<span className="badge bg-red-200 badge-sm">{item?.['role']}</span>)
+                                                (<span className="badge bg-red-100 text-error badge-sm">{item?.['role']}</span>)
                                         }
                                     </td>
                                     <td>{dateFormat(item['createdAt'], "mmmm d, yyyy")}</td>
@@ -65,8 +72,9 @@ const UserList = () => {
                                         {
                                             item['role'] === "admin" ?
                                                 <></> :
-                                                <button className="btn btn-error text-base-100 btn-xs">Remove
-                                                    user</button>
+                                                <button onClick={()=>deleteUser(item['_id'])} className="btn btn-error text-base-100 btn-xs">
+                                                    Remove
+                                                    </button>
                                         }
                                     </th>
                                         </tr>

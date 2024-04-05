@@ -1,5 +1,4 @@
 import {createSlice} from "@reduxjs/toolkit";
-import details from "../../components/details/Details.jsx";
 
 
 export const adSlice = createSlice({
