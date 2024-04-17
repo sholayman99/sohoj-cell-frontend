@@ -7,7 +7,7 @@ const UserListPage = () => {
 
     useEffect(() => {
         (async ()=>{
-            await userListRequest();
+            await userListRequest(1,5);
         })()
     }, []);
 

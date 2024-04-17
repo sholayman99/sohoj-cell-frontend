@@ -5,9 +5,9 @@ import axios from "axios";
 import {
     setAdByStatus,
     setAdDetails,
-    setAdsByCategory,
+    setAdsByCategory, setAdsByDivision,
     setAllAds,
-    setFavourites, setFilterAd, setKeywordAds,
+    setFavourites, setKeywordAds,
     setSingleAd, setTotalAd,
     setUserAd
 } from "../redux/state-slices/ad-slice.js";
@@ -120,14 +120,15 @@ export async function divisionListRequest(){
 }
 
 
-export async function listByCategoryRequest(id){
+export async function listByCategoryRequest(pageNo,perPage,id){
     store.dispatch(showLoader());
 
     try {
-        let res = await axios.get(`/listByCategory/${id}`);
+        let res = await axios.get(`/listByCategory/${pageNo}/${perPage}/${id}`);
         store.dispatch(hideLoader());
         if(res.data['status']==='success'){
             store.dispatch(setAdsByCategory(res.data['data']));
+            store.dispatch(setTotalAd(res.data['total']));
         }
     }
     catch (e) {
@@ -135,6 +136,25 @@ export async function listByCategoryRequest(id){
         errorMsg("Something went wrong!");
     }
 }
+
+
+export async function listByDivisionRequest(pageNo,perPage,id){
+    store.dispatch(showLoader());
+
+    try {
+        let res = await axios.get(`/filterByDivision/${pageNo}/${perPage}/${id}`);
+        store.dispatch(hideLoader());
+        if(res.data['status']==='success'){
+            store.dispatch(setAdsByDivision(res.data['data']));
+            store.dispatch(setTotalAd(res.data['total']));
+        }
+    }
+    catch (e) {
+        store.dispatch(hideLoader());
+        errorMsg("Something went wrong!");
+    }
+}
+
 
 
 export async function sliderListRequest(){
@@ -486,29 +506,13 @@ export async function adSearchByKeyword(pageNo,perPage,keyword){
 }
 
 
-export async function adListByFilter(postBody){
-    store.dispatch(showLoader());
-    try {
-        let res = await axios.post(`/filterAd`,postBody);
-        console.log(res.data)
-        store.dispatch(hideLoader());
-        if(res.data['status'] === 'success'){
-            store.dispatch(hideLoader());
-            store.dispatch(setFilterAd(res.data['data']));
-        }
-    }
-    catch (e) {
-        store.dispatch(hideLoader());
-        errorMsg("Something went wrong!");
-    }
-}
 
 const role = getRole();
 
-export async function adListByStatusRequest(status){
+export async function adListByStatusRequest(pageNo,perPage,status){
     store.dispatch(showLoader());
     try {
-        let res = await axios.get(`/admin/adByStatusList/${status}`,{withCredentials:true,
+        let res = await axios.get(`/admin/adByStatusList/${pageNo}/${perPage}/${status}`,{withCredentials:true,
             headers: {
                role:role
             }});
@@ -517,6 +521,7 @@ export async function adListByStatusRequest(status){
         if(res.data['status'] === 'success'){
             store.dispatch(hideLoader());
             store.dispatch(setAdByStatus(res.data['data']));
+            store.dispatch(setTotalAd(res.data['total']));
         }
     }
     catch (e) {
@@ -546,10 +551,10 @@ export async function adStatusUpdateRequest(id,status){
     }
 }
 
-export async function userListRequest(){
+export async function userListRequest(pageNo,perPage){
     store.dispatch(showLoader());
     try {
-        let res = await axios.get(`/userList`,{withCredentials:true,
+        let res = await axios.get(`/admin/userList/${pageNo}/${perPage}`,{withCredentials:true,
             headers: {
                 role:role
             }});
@@ -557,6 +562,7 @@ export async function userListRequest(){
         if(res.data['status'] === 'success'){
             store.dispatch(hideLoader());
             store.dispatch(setUserList(res.data['data']));
+            store.dispatch(setTotalAd(res.data['total']));
         }
     }
     catch (e) {

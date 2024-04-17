@@ -20,7 +20,7 @@ const AppNavbar = () => {
             <li>
                 {
                     getCookie() ? <Link  className={"btn btn-secondary  text-[16px] uppercase text-orange-800"} to={"/create-ad"}> Post Your Add</Link>
-                    :<li> </li>
+                    :<span> </span>
                 }
             </li>
         </>

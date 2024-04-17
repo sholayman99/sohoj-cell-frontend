@@ -8,7 +8,7 @@ const OpportunityCard = () => {
         <main className={"lg:p-20 p-5"}>
             <section className={"flex flex-col lg:flex-row items-center justify-center gap-10 shadow-md p-5 rounded-lg"}>
                 <div className={"flex max-w-xl w-full items-start"}>
-                    <img className={"lg:w-56 w-28 md:w-56"} src={money} alt={"Money"}/>
+                    <img className={"lg:w-48 w-28 md:w-48 p-0"} src={money} alt={"Money"}/>
                     <div className={"flex flex-col gap-3"}>
                         <h2 className={"lg:text-xl md:text-xl text-lg font-semibold"}>Start making money!</h2>
                         <p className={"text-gray-600"}>Do you have something to sell?

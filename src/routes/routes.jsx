@@ -18,6 +18,7 @@ import AdListByStatusPage from "../pages/AdListByStatusPage.jsx";
 import PrivateRoute from "../components/route/PrivateRoute.jsx";
 import DashBoard from "../components/dashboard/DashBoard.jsx";
 import UserListPage from "../pages/UserListPage.jsx";
+import ListByDivisionPage from "../pages/ListByDivisionPage.jsx";
 
 
 
@@ -62,6 +63,10 @@ const routes = createBrowserRouter([
             {
                 path: "/list-by-keyword/:keyword",
                 element: <ListByKeyword />
+            },
+            {
+                path: "/list-by-division/:divisionID",
+                element: <ListByDivisionPage />
             }
 
         ]

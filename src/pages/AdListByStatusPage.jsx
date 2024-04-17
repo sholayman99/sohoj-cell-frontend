@@ -7,7 +7,7 @@ const AdListByStatusPage = () => {
 
     useEffect(() => {
         (async ()=>{
-            await adListByStatusRequest("all");
+            await adListByStatusRequest(1,5,"all");
         })()
     }, []);
 

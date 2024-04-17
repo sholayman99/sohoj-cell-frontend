@@ -10,7 +10,7 @@ const ListByCategoryPage = () => {
 
     useEffect(() => {
         (async()=>{
-            await listByCategoryRequest(categoryID);
+            await listByCategoryRequest(1,5,categoryID);
         })()
     }, [categoryID]);
 

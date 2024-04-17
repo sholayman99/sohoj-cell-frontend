@@ -7,10 +7,10 @@ import {Link} from "react-router-dom";
 const Footer = () => {
     return (
         <footer className=" lg:px-20 px-5 py-5 bg-base-100 border-t-2 border-primary text-base-content">
-            <section className={" grid lg:grid-cols-5 md:grid-cols-3 grid-cols-1 gap-10"}>
+            <section className={" grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 gap-10"}>
                 <aside className={"flex flex-col gap-5"}>
                     <h3 className={"text-gray-700 font-semibold"}>Download our app</h3>
-                    <div className={"flex items-center gap-1"}>
+                    <div className={"flex flex-col items-start gap-1"}>
                         <img className={"w-28"} src={google} alt={"google"}/>
                         <img className={"w-28"} src={apple} alt={"apple"}/>
                     </div>
@@ -19,7 +19,7 @@ const Footer = () => {
                         <h3>Like us on Facebook</h3>
                     </Link>
                     <div>
-                        <h3 className={"text-gray-700 font-semibold"}>Other Countries</h3>
+                        <h3 className={"text-gray-700 font-medium"}>Other Countries</h3>
                         <p className={"text-info"}>Sri Lanka</p>
                     </div>
                 </aside>
