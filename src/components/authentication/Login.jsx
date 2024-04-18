@@ -1,15 +1,25 @@
-import React, {useRef} from 'react';
-import {FaAddressCard, FaSearchengin} from "react-icons/fa6";
+import React, {useRef, useState} from 'react';
+import {FaAddressCard, FaEye, FaSearchengin} from "react-icons/fa6";
 import {PiCardsFill} from "react-icons/pi";
 import {Link, useNavigate} from "react-router-dom";
-import {FaHome} from "react-icons/fa";
+import {FaEyeSlash, FaHome} from "react-icons/fa";
 import {errorMsg, isEmail,isPassword} from "../../utility/formHelper.js";
 import {loginRequest} from "../../apiRequest/apiRequest.js";
 
 const Login = () => {
 
     let emailRef,passRef = useRef();
+    const [passwordType, setPasswordType] = useState("password");
     const navigate = useNavigate();
+
+    const togglePassword =()=>{
+        if(passwordType==="password") {
+            setPasswordType("text")
+        }
+        else{
+            setPasswordType("password")
+        }
+    }
 
     const onLogin = async ()=>{
         let  email     =  emailRef.value;
@@ -54,27 +64,35 @@ const Login = () => {
                 </section>
 
                 <section className={"w-full max-w-sm"}>
-                    <form className="card-body p-0">
+                    <div className="card-body p-0">
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Email</span>
                             </label>
-                            <input ref={(input) => emailRef = input} type="email" placeholder="Enter your email"
+                            <input ref={(input) => emailRef = input}
+                                   type="text" placeholder="Enter your email"
                                    className="input input-bordered"
                                    required/>
                         </div>
-                        <div className="form-control">
+                        <div className="form-control relative">
                             <label className="label">
                                 <span className="label-text">Password</span>
                             </label>
-                            <input ref={(input) => passRef = input} type="password" placeholder="Enter your password"
+                            <input ref={(input) => passRef = input} type={passwordType}
+                                   placeholder="Enter your password"
                                    className="input input-bordered"
                                    required/>
+                            <button className="btn btn-ghost btn-sm absolute right-1 top-11 "
+                                    onClick={togglePassword}>
+                                {passwordType === "password" ? <FaEyeSlash/> :
+                                    <FaEye/>}
+                            </button>
                             <label className="label">
-                                <Link to={"/email-verify"} className="label-text-alt link link-hover">Forgot password?</Link>
+                                <Link to={"/email-verify"} className="label-text-alt link link-hover">Forgot
+                                    password?</Link>
                             </label>
                         </div>
-                    </form>
+                    </div>
                     <div className="form-control mt-6">
                         <button onClick={onLogin} className="btn btn-primary text-base-100">Login</button>
                     </div>

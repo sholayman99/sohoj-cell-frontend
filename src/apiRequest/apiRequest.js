@@ -266,14 +266,15 @@ export async function adUpdateRequest(id,postBody){
 
 
 
-export async function userAdsRequest(){
+export async function userAdsRequest(pageNo,perPage){
     store.dispatch(showLoader());
 
     try {
-        let res = await axios.get("/listUserAd",{withCredentials:true});
+        let res = await axios.get(`/listUserAd/${pageNo}/${perPage}`,{withCredentials:true});
         store.dispatch(hideLoader());
         if(res.data['status']==="success"){
             store.dispatch(setUserAd(res.data['data']));
+            store.dispatch(setTotalAd(res.data['total']));
         }
     }
     catch (e) {
@@ -662,9 +663,12 @@ export async function verifyOtpRequest(otp){
 }
 
 
-export async function resetPasswordRequest(){
+export async function resetPasswordRequest(pass){
+    store.dispatch(showLoader());
+    let email = getEmail();
+    let postBody = {email:email,password:pass};
     try {
-        let res = await axios.get(`/resetPass`);
+        let res = await axios.post(`/resetPass` , postBody);
         store.dispatch(hideLoader());
         if(res.data['status'] === 'success'){
             store.dispatch(hideLoader());

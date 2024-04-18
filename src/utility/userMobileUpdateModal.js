@@ -10,6 +10,9 @@ export function userMobileUpdateModal(){
         inputLabel: "Mobile",
         inputPlaceholder: "Type your mobile num here...",
         showCancelButton:true,
+        cancelButtonColor: "#d33",
+        confirmButtonColor: "#3085d6",
+        confirmButtonText: "Submit"
     }).then((result)=>{
         if(!isMobile(result.value)){
             errorMsg("Provide valid number")

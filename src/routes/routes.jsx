@@ -1,4 +1,4 @@
-import {createBrowserRouter, Navigate} from "react-router-dom";
+import {createBrowserRouter} from "react-router-dom";
 import Main from "../layout/Main.jsx";
 import HomePage from "../pages/HomePage.jsx";
 import LoginPage from "../pages/LoginPage.jsx";
@@ -25,6 +25,7 @@ import CanceledAdPage from "../pages/CanceledAdPage.jsx";
 import EmailVerifyPage from "../pages/EmailVerifyPage.jsx";
 import OTPVerifyPage from "../pages/OTPVerifyPage.jsx";
 import SetPasswordPage from "../pages/SetPasswordPage.jsx";
+
 
 
 

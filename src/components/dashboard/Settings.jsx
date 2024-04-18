@@ -11,7 +11,7 @@ import {FaEye, FaMobile, FaUser} from "react-icons/fa6";
 import {FaEdit, FaEyeSlash} from "react-icons/fa";
 import {userNameUpdateModal} from "../../utility/userNameUpdateModal.js";
 import {userMobileUpdateModal} from "../../utility/userMobileUpdateModal.js";
-import {confirmModal} from "../../utility/confirmModal.js";
+import {successModal} from "../../utility/successModal.js";
 
 const Settings = () => {
 
@@ -88,7 +88,7 @@ const Settings = () => {
             else{
                let res = await userPasswordUpdateRequest(newPass);
                if(res === true){
-                  await confirmModal();
+                  await successModal();
                    newPassRef.value = ""
                    confirmPassRef.value = ""
                }

@@ -11,7 +11,7 @@ const UserList = () => {
     const total = useSelector((state)=>state.ads.totalAd);
 
     const handlePageClick = async (event)=>{
-        await userListRequest(event.selected+1,5)
+        await userListRequest(event.selected+1,10)
     }
 
     const deleteUser =async (id)=>{
@@ -97,7 +97,7 @@ const UserList = () => {
             </section>
             <section className="flex justify-center items-center lg:mt-8 mt-5">
                 <ReactPaginate
-                    pageCount={total / 5} onPageChange={handlePageClick} previousLabel={'<'} nextLabel={'>'}
+                    pageCount={total / 10} onPageChange={handlePageClick} previousLabel={'<'} nextLabel={'>'}
                     breakLabel={'...'} marginPagesDisplayed={2} pageRangeDisplayed={5} containerClassName={'pagination'}
                     activeClassName={'active'} previousClassName={'prev'} nextClassName={'next'} pageClassName={'page'} />
             </section>

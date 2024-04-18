@@ -6,10 +6,17 @@ export function updateStatus(id,status){
         title:"Update Status",
         input:"select",
         inputOptions:{Pending:"Pending" , Approved:"Approved",Canceled:"Canceled"},
-        inputValue:status
+        inputValue:status,
+        confirmButtonColor: "#3085d6",
+        confirmButtonText: "Submit"
     }).then((result)=>{
-        return adStatusUpdateRequest(id,result.value).then((res)=>{
-            return res ;
-        })
+         if(result.isConfirmed){
+             return adStatusUpdateRequest(id,result.value).then((res)=>{
+                return res ;
+            })
+        }
+         else{
+             return false;
+         }
     })
 }

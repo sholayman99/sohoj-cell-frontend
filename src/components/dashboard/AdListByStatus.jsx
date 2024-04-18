@@ -18,6 +18,9 @@ const AdListByStatus = () => {
            await adListByStatusRequest(1,10,status);
            navigate('/dashboard/all/all');
        }
+       else {
+           navigate('/dashboard/all/all');
+       }
   }
 
 
@@ -117,7 +120,7 @@ const AdListByStatus = () => {
             </section>
             <section className="flex justify-center items-center lg:mt-8 mt-5">
                 <ReactPaginate
-                    pageCount={Math.ceil(total / 5)} onPageChange={handlePageClick}
+                    pageCount={Math.ceil(total / 10)} onPageChange={handlePageClick}
                     previousLabel={'<'} nextLabel={'>'} breakLabel={'...'}
                     marginPagesDisplayed={2} pageRangeDisplayed={5} containerClassName={'pagination'}
                     activeClassName={'active'} previousClassName={'prev'} nextClassName={'next'}

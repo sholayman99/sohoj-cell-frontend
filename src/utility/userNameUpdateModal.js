@@ -9,6 +9,9 @@ export function userNameUpdateModal(){
         inputLabel: "Full Name",
         inputPlaceholder: "Type your full name here...",
         showCancelButton:true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Submit"
     }).then((result)=>{
        if(isEmpty(result.value)){
            errorMsg("Full name can't be empty!")
