@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {useSelector} from "react-redux";
 import {Link, useNavigate} from "react-router-dom";
-import {getBase64} from "../../utility/formHelper.js";
+import {errorMsg, getBase64, isEmpty} from "../../utility/formHelper.js";
 import {postAdRequest} from "../../apiRequest/apiRequest.js";
 
 
@@ -44,13 +44,47 @@ const navigate = useNavigate()
 
     const onPost = async ()=>{
        postData.userEmail = userInfo['email'];
-       postData.mobile = userInfo['mobile']
-       let res = await postAdRequest(postData,selectedImage);
-       if(res === true){
-           navigate('/dashboard/my-ad');
+       postData.mobile = userInfo['mobile'];
+
+       if(isEmpty(postData.categoryID)){
+           errorMsg("Please enter a category");
        }
-
-
+       else if(isEmpty(postData.districtID)){
+           errorMsg("Please enter a district");
+       }
+       else if(isEmpty(postData.divisionID)){
+           errorMsg("Please enter a division");
+       }
+       else if(isEmpty(postData.productName)){
+           errorMsg("Please enter a Name");
+       }
+       else if (isEmpty(postData.price)){
+           errorMsg("Please enter a price");
+       }
+       else if(isEmpty(postData.condition)){
+           errorMsg("Please enter product condition");
+       }
+       else if(isEmpty(postData.authenticity)){
+           errorMsg("Please enter authenticity");
+       }
+       else if (isEmpty(postData.brandName)){
+           errorMsg("Please enter a Brand name");
+       }
+       else if(isEmpty(postData.features)){
+           errorMsg("Please enter product Features");
+       }
+       else if(isEmpty(postData.model)){
+           errorMsg("Please enter a model");
+       }
+       else if (isEmpty(postData.negotiable)){
+           errorMsg("Please tell if product is negotiable");
+       }
+       else{
+           let res = await postAdRequest(postData,selectedImage);
+           if(res === true){
+               navigate('/dashboard/my-ad');
+           }
+       }
     }
 
     return (

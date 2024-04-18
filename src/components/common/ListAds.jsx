@@ -73,7 +73,10 @@ const ListAds = () => {
                         {
 
                             listAds.length === 0 ?
-                                    <h2 className={"text-error mt-10 text-2xl text-center"}>No ads are available!</h2>
+                                <div className={"flex flex-col items-center justify-center gap-3"}>
+                                    <h2 className={"text-error font-semibold mt-10 text-2xl text-center"}>Sorry!No ads are available</h2>
+                                    <p className={"text-6xl mb-0"}>&#128543;</p>
+                                </div>
                                 :
                                 <div className={"grid grid-cols-1 gap-5"}>
                                     {

@@ -79,7 +79,7 @@ const Dashboard = () => {
                                                       <NavLink
                                                           className={({isActive}) => isActive ? "flex items-center justify-between " +
                                                               "text-[#000] font-semibold" : "flex items-center justify-between"}
-                                                          to={"/dashboard/ad-list-byStatus"}>
+                                                          to={`/dashboard/all/all`}>
                                                           <span>AdList</span>
                                                           <span className={"text-2xl"}> <FaAngleRight/></span>
                                                       </NavLink>

@@ -71,7 +71,7 @@ const Login = () => {
                                    className="input input-bordered"
                                    required/>
                             <label className="label">
-                                <Link to={"/"} className="label-text-alt link link-hover">Forgot password?</Link>
+                                <Link to={"/email-verify"} className="label-text-alt link link-hover">Forgot password?</Link>
                             </label>
                         </div>
                     </form>

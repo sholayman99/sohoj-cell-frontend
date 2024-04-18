@@ -3,11 +3,11 @@ import LazyMotion from "../layout/LazyMotion.jsx";
 import {adListByStatusRequest} from "../apiRequest/apiRequest.js";
 const AdListByStatus = lazy(()=>import("../components/dashboard/AdListByStatus.jsx"))
 
-const AdListByStatusPage = () => {
+const AllAdListByStatusPage = () => {
 
     useEffect(() => {
         (async ()=>{
-            await adListByStatusRequest(1,5,"all");
+            await adListByStatusRequest(1,10,"all");
         })()
     }, []);
 
@@ -20,4 +20,4 @@ const AdListByStatusPage = () => {
     );
 };
 
-export default AdListByStatusPage;
+export default AllAdListByStatusPage;

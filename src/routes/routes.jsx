@@ -14,11 +14,17 @@ import SettingsPage from "../pages/SettingsPage.jsx";
 import DetailsPage from "../pages/DetailsPage.jsx";
 import UpdateAdPage from "../pages/UpdateAdPage.jsx";
 import ListByKeyword from "../pages/ListByKeyword.jsx";
-import AdListByStatusPage from "../pages/AdListByStatusPage.jsx";
+import AllAdListByStatusPage from "../pages/AllAdListByStatusPage.jsx";
 import PrivateRoute from "../components/route/PrivateRoute.jsx";
 import DashBoard from "../components/dashboard/DashBoard.jsx";
 import UserListPage from "../pages/UserListPage.jsx";
 import ListByDivisionPage from "../pages/ListByDivisionPage.jsx";
+import PendingAdPage from "../pages/PendingAdPage.jsx";
+import ApprovedAdPage from "../pages/ApprovedAdPage.jsx";
+import CanceledAdPage from "../pages/CanceledAdPage.jsx";
+import EmailVerifyPage from "../pages/EmailVerifyPage.jsx";
+import OTPVerifyPage from "../pages/OTPVerifyPage.jsx";
+import SetPasswordPage from "../pages/SetPasswordPage.jsx";
 
 
 
@@ -67,6 +73,18 @@ const routes = createBrowserRouter([
             {
                 path: "/list-by-division/:divisionID",
                 element: <ListByDivisionPage />
+            },
+            {
+                path: "/email-verify",
+                element: <EmailVerifyPage />
+            },
+            {
+                path: "/otp-verify",
+                element: <OTPVerifyPage />
+            },
+            {
+                path: "reset-password",
+                element: <SetPasswordPage />
             }
 
         ]
@@ -100,13 +118,25 @@ const routes = createBrowserRouter([
                 element: <MyAdsPage />
             },
             {
-                path: "/dashboard/ad-list-byStatus",
-                element: <AdListByStatusPage />
+                path: "/dashboard/all/:status",
+                element: <AllAdListByStatusPage />
+            },
+            {
+                path: "/dashboard/pending/:status",
+                element: <PendingAdPage />
+            },
+            {
+                path: "/dashboard/approved/:status",
+                element: <ApprovedAdPage />
+            },
+            {
+                path: "/dashboard/cancel/:status",
+                element: <CanceledAdPage />
             },
             {
                 path: "/dashboard/user-list",
                 element: <UserListPage />
-            }
+            },
 
         ]
     }

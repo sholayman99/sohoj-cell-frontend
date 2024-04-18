@@ -1,25 +1,25 @@
-import React, {useEffect, useState} from 'react';
-import {adListByStatusRequest, adSearchByKeyword, allAdsRequest} from "../../apiRequest/apiRequest.js";
+import React from 'react';
+import {adListByStatusRequest} from "../../apiRequest/apiRequest.js";
 import {useSelector} from "react-redux";
 import {FaEdit} from "react-icons/fa";
 import dateFormat from "dateformat";
 import {updateStatus} from "../../utility/updateStatus.js";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 import ReactPaginate from "react-paginate";
 const AdListByStatus = () => {
-
-    const [status,setStatus] = useState("all");
-  const adByStatus = useSelector((state)=>state.ads.adByStatus);
-  const navigate = useNavigate();
+    const navigate = useNavigate();
+    const adByStatus = useSelector((state)=>state.ads.adByStatus);
+    const {status} = useParams();
     const total = useSelector((state)=>state.ads.totalAd);
 
-  const updateAdStatus = async (id,status)=>{
+    const updateAdStatus = async (id,status)=>{
        let res = await updateStatus(id,status);
        if(res === true){
-           await adListByStatusRequest(1,5,"all");
-           navigate('/dashboard/ad-list-byStatus')
+           await adListByStatusRequest(1,10,status);
+           navigate('/dashboard/all/all');
        }
   }
+
 
     const handlePageClick = async (event)=>{
            if(status === "Pending"){
@@ -36,26 +36,6 @@ const AdListByStatus = () => {
            }
     }
 
-    const handleRequest = async (onCLickStatus)=>{
-       if(onCLickStatus === "Pending"){
-           await setStatus("Pending")
-           await adListByStatusRequest(1,5,"Pending");
-
-       }
-       else if(onCLickStatus === "Approved"){
-           await setStatus("Approved")
-           await adListByStatusRequest(1,5,"Approved");
-       }
-       else if(onCLickStatus === "Canceled"){
-           await setStatus("Canceled")
-            await adListByStatusRequest(1,5,"Canceled")
-        }
-       else{
-           await setStatus("all")
-           await adListByStatusRequest(1,5,"all")
-       }
-    }
-
 
     return (
         <main>
@@ -63,21 +43,17 @@ const AdListByStatus = () => {
             <div className={"divider"}></div>
             <section className={"flex justify-center items-center mb-5"}>
                 <div className="join join-horizontal">
-                    <input className="join-item btn lg:btn-md md:btn-sm btn-xs" type="radio" name="options"
-                           aria-label="All"
-                           onClick={async () => await handleRequest("all")}/>
+                    <Link to={"/dashboard/all/all"} className="join-item btn lg:btn-md md:btn-sm btn-xs" type="radio" name="options"
+                          aria-label="All" >All </Link>
                     <div className={"divider divider-horizontal"}></div>
-                    <input className="join-item btn lg:btn-md md:btn-sm btn-xs" type="radio" name="options"
-                           aria-label="Approved"
-                           onClick={()=>handleRequest("Approved")}/>
+                    <Link to={"/dashboard/approved/Approved"} className="join-item btn lg:btn-md md:btn-sm btn-xs" type="radio" name="options"
+                          aria-label="Approved" >Approved </Link>
                     <div className={"divider divider-horizontal"}></div>
-                    <input className="join-item btn lg:btn-md md:btn-sm btn-xs" type="radio" name="options"
-                           aria-label="Pending"
-                           onClick={()=>handleRequest("Pending")}/>
+                    <Link to={"/dashboard/pending/Pending"} className="join-item btn lg:btn-md md:btn-sm btn-xs" type="radio" name="options"
+                          aria-label="Pending" >Pending </Link>
                     <div className={"divider divider-horizontal"}></div>
-                    <input className="join-item btn lg:btn-md md:btn-sm btn-xs" type="radio" name="options"
-                           aria-label="Canceled"
-                           onClick={()=>handleRequest("Canceled")}/>
+                    <Link to={"/dashboard/cancel/Canceled"} className="join-item btn lg:btn-md md:btn-sm btn-xs" type="radio" name="options"
+                          aria-label="Canceled" >Canceled</Link>
                 </div>
             </section>
             <section>
@@ -141,19 +117,11 @@ const AdListByStatus = () => {
             </section>
             <section className="flex justify-center items-center lg:mt-8 mt-5">
                 <ReactPaginate
-                    pageCount={total / 5}
-                    onPageChange={handlePageClick}
-                    previousLabel={'<'}
-                    nextLabel={'>'}
-                    breakLabel={'...'}
-                    marginPagesDisplayed={2}
-                    pageRangeDisplayed={5}
-                    containerClassName={'pagination'}
-                    activeClassName={'active'}
-                    previousClassName={'prev'}
-                    nextClassName={'next'}
-                    pageClassName={'page'}
-                />
+                    pageCount={Math.ceil(total / 5)} onPageChange={handlePageClick}
+                    previousLabel={'<'} nextLabel={'>'} breakLabel={'...'}
+                    marginPagesDisplayed={2} pageRangeDisplayed={5} containerClassName={'pagination'}
+                    activeClassName={'active'} previousClassName={'prev'} nextClassName={'next'}
+                    pageClassName={'page'} />
             </section>
         </main>
 

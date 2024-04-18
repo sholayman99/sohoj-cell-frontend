@@ -21,7 +21,7 @@ const CategoryList = () => {
                    {
                        categoryList.map((item,i)=>{
                            return (
-                               <Link to={`/list-by-category/${item['_id']}`} key={i} className={"flex items-center gap-2"}>
+                               <Link to={`/list-by-category/${item['_id']}`} key={i} className={"flex items-center gap-2 mb-3 lg:mb-0 md:mb-0"}>
                                    <img className={"w-12"} src={item['image']} alt={item['categoryName']}/>
                                    <h3 className={"font-light md:text-[17px]  lg:text-[17px]"}>{item['categoryName']}</h3>
                                </Link>

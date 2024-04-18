@@ -14,7 +14,16 @@ import {
 import {setSliders} from "../redux/state-slices/slider-slice.js";
 import {setCategory, setDistrict, setDivision} from "../redux/state-slices/category-slice.js";
 import {setAdsCount, setCategoryCount, setInfo, setUserCount, setUserList} from "../redux/state-slices/user-slice.js";
-import {getRole, removeSession, setRole, setUserInfo} from "../utility/sessionHelper.js";
+import {
+    getEmail,
+    getOtp,
+    getRole,
+    removeSession,
+    setEmail,
+    setOtp,
+    setRole,
+    setUserInfo
+} from "../utility/sessionHelper.js";
 
 
 export async function registrationRequest(fullName,email,password,photo,mobile){
@@ -602,6 +611,63 @@ export async function removeUserRequest(id){
         if(res.data['status'] === 'success'){
             store.dispatch(hideLoader());
             successMsg("remove user success!");
+            return true;
+        }
+    }
+    catch (e) {
+        store.dispatch(hideLoader());
+        errorMsg("Something went wrong!");
+        return false;
+    }
+}
+
+
+export async function verifyEmailRequest(email){
+    store.dispatch(showLoader());
+    try {
+        let res = await axios.get(`/emailVerify/${email}`);
+        store.dispatch(hideLoader());
+        if(res.data['status'] === 'success'){
+            store.dispatch(hideLoader());
+            successMsg("Valid email!");
+            setEmail(email);
+            return true;
+        }
+    }
+    catch (e) {
+        store.dispatch(hideLoader());
+        errorMsg("Something went wrong!");
+        return false;
+    }
+}
+
+export async function verifyOtpRequest(otp){
+    store.dispatch(showLoader());
+    let email = getEmail();
+    try {
+        let res = await axios.get(`/otpVerify/${email}/${otp}`);
+        store.dispatch(hideLoader());
+        if(res.data['status'] === 'success'){
+            store.dispatch(hideLoader());
+            successMsg("Otp verification successful!");
+            setOtp(otp);
+            return true;
+        }
+    }
+    catch (e) {
+        store.dispatch(hideLoader());
+        errorMsg("Something went wrong!");
+        return false;
+    }
+}
+
+
+export async function resetPasswordRequest(){
+    try {
+        let res = await axios.get(`/resetPass`);
+        store.dispatch(hideLoader());
+        if(res.data['status'] === 'success'){
+            store.dispatch(hideLoader());
             return true;
         }
     }
