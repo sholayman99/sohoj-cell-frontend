@@ -30,7 +30,7 @@ const OtpVerify = () => {
             <section className={" bg-base-100 w-full lg:max-w-lg md:max-w-lg max-w-sm lg:px-16 lg:py-8 px-6 py-3 rounded-md flex" +
                     " flex-col justify-center items-center gap-5"}>
                 <div className={"text-center"}>
-                    <h2 className={"text-2xl font-semibold text-primary"}>Forgot Password?</h2>
+                    <h2 className={"text-2xl font-semibold text-accent"}>Otp Verification</h2>
                     <p>Please verify otp code to reset password</p>
                 </div>
                 <div className={"form-control w-full"}>
@@ -41,7 +41,7 @@ const OtpVerify = () => {
                                     onChange={(value)=>setOtp(value)}/>
                 </div>
                 <div className={"w-full"}>
-                    <button onClick={verifyOtp} className={"btn btn-primary text-base-100 w-full"}>Next</button>
+                    <button onClick={verifyOtp} className={"btn btn-accent text-base-100 w-full"}>Next</button>
                 </div>
             </section>
         </main>

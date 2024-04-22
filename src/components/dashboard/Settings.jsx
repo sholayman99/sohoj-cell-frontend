@@ -2,6 +2,7 @@ import React, {useRef, useState} from 'react';
 import {useSelector} from "react-redux";
 import {checkFileSize, errorMsg, getBase64, isPassword} from "../../utility/formHelper.js";
 import {
+    accountDeleteRequest,
     logoutRequest,
     userInfoRequest,
     userPasswordUpdateRequest,
@@ -12,6 +13,8 @@ import {FaEdit, FaEyeSlash} from "react-icons/fa";
 import {userNameUpdateModal} from "../../utility/userNameUpdateModal.js";
 import {userMobileUpdateModal} from "../../utility/userMobileUpdateModal.js";
 import {successModal} from "../../utility/successModal.js";
+import {accountDeleteAlert} from "../../utility/accountDeleteAlert.js";
+import {removeSession} from "../../utility/sessionHelper.js";
 
 const Settings = () => {
 
@@ -107,6 +110,19 @@ const Settings = () => {
         await logoutRequest();
     }
 
+    const onDeleteAccount = async () => {
+
+        let res = await accountDeleteAlert(userDetails['_id']);
+        if(res === true){
+            await accountDeleteRequest();
+            await removeSession();
+            errorMsg("Account Deleted!");
+            window.location.href = "/registration";
+
+        }
+
+    }
+
 
     return (
         <main>
@@ -198,7 +214,7 @@ const Settings = () => {
                 </div>
 
                 <div className={"flex flex-col mt-10 lg:flex-row md:flex-row items-center gap-3 max-w-[200px]"}>
-                    <button  className={"btn btn-error w-full  text-base-100"}>Delete account</button>
+                    <button onClick={onDeleteAccount}  className={"btn btn-error w-full  text-base-100"}>Delete account</button>
                     <button onClick={onLogout} className={"btn btn-primary w-full  text-base-100"}>Log out</button>
                 </div>
 

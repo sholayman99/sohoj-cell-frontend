@@ -16,7 +16,6 @@ import {setCategory, setDistrict, setDivision} from "../redux/state-slices/categ
 import {setAdsCount, setCategoryCount, setInfo, setUserCount, setUserList} from "../redux/state-slices/user-slice.js";
 import {
     getEmail,
-    getOtp,
     getRole,
     removeSession,
     setEmail,
@@ -24,6 +23,7 @@ import {
     setRole,
     setUserInfo
 } from "../utility/sessionHelper.js";
+
 
 
 export async function registrationRequest(fullName,email,password,photo,mobile){
@@ -526,7 +526,6 @@ export async function adListByStatusRequest(pageNo,perPage,status){
             headers: {
                role:role
             }});
-        console.log(res)
         store.dispatch(hideLoader());
         if(res.data['status'] === 'success'){
             store.dispatch(hideLoader());
@@ -681,3 +680,21 @@ export async function resetPasswordRequest(pass){
         return false;
     }
 }
+
+export async function accountDeleteRequest(id){
+    store.dispatch(showLoader());
+    try {
+        let res = await axios.get(`/deleteAccount/${id}` , {withCredentials:true});
+        store.dispatch(hideLoader());
+        if(res.data['status'] === 'success'){
+            store.dispatch(hideLoader());
+            return true;
+        }
+    }
+    catch (e) {
+        store.dispatch(hideLoader());
+        errorMsg("Something went wrong!");
+        return false;
+    }
+}
+

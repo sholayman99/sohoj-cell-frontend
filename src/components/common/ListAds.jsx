@@ -70,17 +70,15 @@ const ListAds = () => {
                         <h2 className={"text-lg font-semibold text-gray-700"}>Buy, Sell, Rent or Find Anything in
                             Bangladesh</h2>
                         <Slider/>
-                        {
-
-                            listAds.length === 0 ?
-                                <div className={"flex flex-col items-center justify-center gap-3"}>
-                                    <h2 className={"text-error font-semibold mt-10 text-2xl text-center"}>Sorry!No ads are available</h2>
-                                    <p className={"text-6xl mb-0"}>&#128543;</p>
-                                </div>
-                                :
                                 <div className={"grid grid-cols-1 gap-5"}>
                                     {
-                                        listAds.map((item, i) => {
+                                        listAds.length === 0 ?
+                                            <div className={"flex flex-col items-center justify-center gap-3"}>
+                                                <h2 className={"text-error font-semibold mt-10 text-2xl text-center"}>Sorry!No ads are available</h2>
+                                                <p className={"text-6xl mb-0"}>&#128543;</p>
+                                            </div>
+                                            :
+                                            listAds.map((item, i) => {
                                             return (
                                                 <Link key={i} to={`/details/${item['_id']}`}
                                                       className={"flex items-start gap-5 border p-2 rounded-md border-secondary"}>
@@ -101,8 +99,6 @@ const ListAds = () => {
                                         })
                                     }
                                 </div>
-                        }
-
                     </div>
                 </section>
                 <section className="flex justify-center items-center lg:mt-8 mt-5">

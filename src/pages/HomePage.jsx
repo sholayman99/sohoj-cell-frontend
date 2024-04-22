@@ -8,10 +8,10 @@ const HomePage = () => {
     return (
       <>
           <Suspense fallback={<LazyMotion />}>
-              <Search />
-              <CategoryList />
-              <OpportunityCard />
-              <AboutSohoj />
+                  <Search />
+                  <CategoryList />
+                  <OpportunityCard />
+                  <AboutSohoj />
           </Suspense>
       </>
     );

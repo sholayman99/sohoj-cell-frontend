@@ -39,7 +39,7 @@ const Footer = () => {
                 </nav>
                 <nav className={"flex flex-col gap-2"}>
                     <h6 className={"text-gray-700 font-semibold"}>Follow SohojCell</h6>
-                    <a className="link link-info link-hover">Blog</a>
+                    <Link to={"/blog"} className="link link-info link-hover">Blog</Link>
                     <a className="link link-info link-hover">Facebook</a>
                     <a className="link link-info link-hover">Twitter</a>
                     <a className="link link-info link-hover">Youtube</a>
@@ -48,9 +48,9 @@ const Footer = () => {
                     <h6 className={"text-gray-700 font-semibold"}>About SohojCell</h6>
                     <a className="link link-info link-hover">About Us</a>
                     <a className="link link-info link-hover">Careers</a>
-                    <a className="link link-info link-hover">Terms & Conditions</a>
-                    <a className="link link-info link-hover">Privacy Policy</a>
-                    <a className="link link-info link-hover">Sitemap</a>
+                    <Link to={"/terms"} className="link link-info link-hover">Terms & Conditions</Link>
+                    <Link to={"/privacy"} className="link link-info link-hover">Privacy Policy</Link>
+                    <Link to={"/site-map"} className="link link-info link-hover">Sitemap</Link>
                 </nav>
             </section>
             <div className={"divider"}></div>

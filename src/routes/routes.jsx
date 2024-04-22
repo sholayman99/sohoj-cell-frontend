@@ -30,6 +30,7 @@ import SetPasswordPage from "../pages/SetPasswordPage.jsx";
 
 
 
+
 const routes = createBrowserRouter([
     {
         path:"/",
@@ -61,7 +62,7 @@ const routes = createBrowserRouter([
             },
             {
                 path: "/details/:id",
-                element: <DetailsPage />
+                element: <PrivateRoute Component={DetailsPage} />
             },
             {
                 path: "/update-ad/:id",

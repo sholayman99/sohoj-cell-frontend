@@ -25,7 +25,7 @@ h1,h2,h3,h4,h5,h6,button,input,textarea{
 }
 
 p{
-    font-size: 14px;
+    font-size: 15px;
     font-family: 'Poppins', sans-serif !important;
 }
 a {
@@ -78,5 +78,16 @@ a:hover {
 .prev:hover,
 .next:hover {
     background-color: #edf2f7;
+}
+
+.title{
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 1px;
+    margin-top: 10px;
+}
+
+.text{
+    color: #514f4f;
 }
 

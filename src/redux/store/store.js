@@ -5,6 +5,7 @@ import adsReducer from "../state-slices/ad-slice.js";
 import sliderReducer from "../state-slices/slider-slice.js";
 import userReducer from "../state-slices/user-slice.js";
 
+
 export default configureStore({
     reducer:{
       settings:settingReducer,
@@ -12,5 +13,6 @@ export default configureStore({
       ads:adsReducer,
       sliders:sliderReducer,
       user:userReducer,
+
     }
 })

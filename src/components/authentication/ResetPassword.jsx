@@ -1,7 +1,6 @@
 import React, {useRef, useState} from 'react';
 import {FaEyeSlash} from "react-icons/fa";
 import {FaEye} from "react-icons/fa6";
-import {TbPasswordUser} from "react-icons/tb";
 import pass from "../../assets/images/password.png"
 import {errorMsg, isPassword} from "../../utility/formHelper.js";
 import {resetPasswordRequest} from "../../apiRequest/apiRequest.js";
@@ -54,10 +53,9 @@ const ResetPassword = () => {
                         <div className={"label"}>
                             <span className="label-text-alt text-gray-500">New password</span>
                         </div>
-                        <input type={passwordType} placeholder={"Enter new password"}
+                        <input type={passwordType} className="input input-bordered  max-w-full"
                                ref={(input) => newPassRef = input}
-                               className="input input-bordered  max-w-full"
-                               required/>
+                               required />
                         <div className="input-group-btn absolute right-1 top-10">
                             <button className="btn btn-ghost btn-sm"
                                     onClick={togglePassword}>
@@ -70,10 +68,9 @@ const ResetPassword = () => {
                         <div className={"label"}>
                             <span className="label-text-alt text-gray-500">Confirm password</span>
                         </div>
-                        <input type={"password"} placeholder="Enter confirm password"
-                               className="input input-bordered max-w-full"
+                        <input type={"password"} className="input input-bordered max-w-full"
                                ref={(input) => confirmPassRef = input}
-                               required/>
+                               required />
                     </div>
                 </div>
                 <button onClick={resetPassword} className={"btn btn-accent w-full"}>Submit</button>

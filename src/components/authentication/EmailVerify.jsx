@@ -32,7 +32,7 @@ const EmailVerify = () => {
                 className={" bg-base-100 w-full lg:max-w-lg md:max-w-lg max-w-sm lg:px-16 lg:py-8 px-6 py-3 rounded-md flex" +
                     " flex-col justify-center items-center gap-5"}>
                 <div className={"flex justify-center items-center flex-col"}>
-                    <h2 className={"text-2xl text-primary font-semibold"}>Forgot Password?</h2>
+                    <h2 className={"text-2xl text-accent font-semibold"}>Forgot Password?</h2>
                     <p>Please verify your email to reset your password</p>
                 </div>
                 <div className={"form-control w-full"}>
@@ -43,7 +43,7 @@ const EmailVerify = () => {
                            type="text"  className="input input-bordered w-full"/>
                 </div>
                 <div className={"w-full"}>
-                    <button onClick={verifyEmail} className={"btn btn-primary text-base-100 w-full"}>Next</button>
+                    <button onClick={verifyEmail} className={"btn btn-accent text-base-100 w-full"}>Next</button>
                 </div>
             </section>
         </main>

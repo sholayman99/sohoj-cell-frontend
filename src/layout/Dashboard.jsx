@@ -24,7 +24,7 @@ const Dashboard = () => {
             <AppNavbar/>
               <main className={"bg-base-300 lg:p-20  p-5"}>
                   <div className={"bg-base-100 rounded-md p-5 flex flex-col lg:flex-row md:flex-row items-start  gap-10"}>
-                      <section className={"flex flex-col items-start w-full max-w-[180px]"}>
+                      <section className={"flex flex-col items-start w-full lg:max-w-[180px] md:max-w-[180px]"}>
                           <div className={"flex items-center gap-1"}>
                               <span className={"lg:text-4xl text-2xl text-primary"}><MdManageAccounts /> </span>
                               <h2 className={"lg:text-2xl text-xl"}>Account</h2>

@@ -6,7 +6,8 @@ import Footer from "./Footer.jsx";
 const Main = () => {
     const location = useLocation()
     const noHeaderFooter = location.pathname.includes('login') ||
-        location.pathname.includes('registration') || location.pathname.includes('update-profile');
+        location.pathname.includes('registration') || location.pathname.includes('blog')
+        || location.pathname.includes('site-map');
 
     return (
         <div>
