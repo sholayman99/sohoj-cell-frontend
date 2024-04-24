@@ -17,7 +17,7 @@ const UserList = () => {
     const deleteUser =async (id)=>{
        let res = await removeUser(id);
        if(res === true){
-           await userListRequest();
+           await userListRequest(1,10);
        }
     }
 

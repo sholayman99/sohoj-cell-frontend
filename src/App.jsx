@@ -7,7 +7,7 @@ import {Toaster} from "react-hot-toast";
 
 
 const App = () => {
-    axios.defaults.baseURL = 'http://localhost:5050/api/v1';
+    axios.defaults.baseURL = 'https://sohoj-cell-backend.vercel.app/api/v1';
 
     axios.defaults.withCredentials = true
 

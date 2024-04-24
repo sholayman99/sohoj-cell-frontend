@@ -130,15 +130,16 @@ const Settings = () => {
             <div className={"divider"}></div>
 
 
-            <div className="flex flex-col gap-5 items-start w-[50%]  justify-center">
+            <div className="flex flex-col gap-5 items-start w-[50%]   justify-center">
                 <h2 className={"text-xl font-semibold"}>Upload Image<span
                     className={"text-error text-sm font-normal"}>(Max size can be 100KB)</span></h2>
-                <div className="w-32 h-32 bg-gray-200 rounded-full overflow-hidden relative">
+                <div className="w-32 h-32 bg-gray-200 rounded-full overflow-hidden">
                     <div className="avatar">
                         <div className="w-full rounded-full">
                             <img alt={""} src={userDetails['photo']} ref={(input) => userImgView = input}/>
                         </div>
                     </div>
+                    
 
                     <div className="w-full h-full flex items-center justify-center text-gray-500">
                         <span className="text-sm">Upload Image</span>

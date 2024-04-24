@@ -26,7 +26,7 @@ const Dashboard = () => {
                   <div className={"bg-base-100 rounded-md p-5 flex flex-col lg:flex-row md:flex-row items-start  gap-10"}>
                       <section className={"flex flex-col items-start w-full lg:max-w-[180px] md:max-w-[180px]"}>
                           <div className={"flex items-center gap-1"}>
-                              <span className={"lg:text-4xl text-2xl text-primary"}><MdManageAccounts /> </span>
+                              <span className={"lg:text-4xl text-2xl text-info"}><MdManageAccounts /> </span>
                               <h2 className={"lg:text-2xl text-xl"}>Account</h2>
                           </div>
                           <div className={"divider"}></div>
@@ -70,7 +70,7 @@ const Dashboard = () => {
                                   userInfo['role'] ==="admin"?(
                                           <div>
                                               <div className={"flex items-center gap-1"}>
-                                                  <span className={"lg:text-4xl text-2xl text-primary"}><MdAdminPanelSettings/></span>
+                                                  <span className={"lg:text-4xl text-2xl text-info"}><MdAdminPanelSettings/></span>
                                                   <h2 className={"lg:text-2xl text-xl"}>Admin</h2>
                                               </div>
                                               <div className={"divider"}></div>

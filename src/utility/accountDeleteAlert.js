@@ -1,6 +1,5 @@
 import Swal from "sweetalert2";
 import {accountDeleteRequest} from "../apiRequest/apiRequest.js";
-import {errorMsg} from "./formHelper.js";
 
 export function accountDeleteAlert(id){
     return Swal.fire({
@@ -16,9 +15,6 @@ export function accountDeleteAlert(id){
             return  accountDeleteRequest(id).then((deleteResult)=>{
                 return deleteResult
             })
-        }
-        else{
-            errorMsg("Sorry!not eligible!");
         }
     });
 }

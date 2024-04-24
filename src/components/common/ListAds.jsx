@@ -82,8 +82,8 @@ const ListAds = () => {
                                             return (
                                                 <Link key={i} to={`/details/${item['_id']}`}
                                                       className={"flex items-start gap-5 border p-2 rounded-md border-secondary"}>
-                                                    <img className={"w-48"} src={item['image']} alt={""}/>
-                                                    <div className="flex flex-col gap-1">
+                                                    <img className={"lg:w-48 md:w-48 w-32"} src={item['image']} alt={""}/>
+                                                    <div className="flex flex-col gap-1 w-full">
                                                         <h3 className={"text-2xl font-semibold"}>{item['productName']}
                                                         </h3>
                                                         <p className={"text-gray-600 font-semibold"}>{item['brandName']}</p>

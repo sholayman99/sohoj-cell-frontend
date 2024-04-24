@@ -23,6 +23,7 @@ import {
     setRole,
     setUserInfo
 } from "../utility/sessionHelper.js";
+import Cookies from "js-cookie";
 
 
 
@@ -59,9 +60,11 @@ export async function loginRequest(email,password){
 
     try {
         let res = await axios.post("/login",postBody, {withCredentials:true});
+        console.log(res)
         store.dispatch(hideLoader())
         if(res.data['status'] === "success"){
             successMsg("Login successfully!");
+            Cookies.set("token",res.data['token']);
             setUserInfo(res.data['data']);
             setRole(res.data['role']);
             return true

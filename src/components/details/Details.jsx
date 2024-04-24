@@ -118,7 +118,7 @@ const Details = () => {
                                  </div>
                                 <div>
                                     <h4 className={"font-semibold text-[16px]"}>Description:</h4>
-                                    <p className={"text-gray-500"}> {details['description']}</p>
+                                    <p className={"text-gray-500 whitespace-pre-wrap"}> {details['description']}</p>
                                 </div>
                             </div>
 

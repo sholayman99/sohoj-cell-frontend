@@ -45,7 +45,7 @@ const Login = () => {
             <div className={"flex items-start  justify-center gap-28"}>
                 <section className={"hidden lg:flex flex-col gap-5"}>
                     <div>
-                        <h3 className={"text-xl text-[#444141FF] font-semibold"}>Welcome to SohojCell</h3>
+                        <h3 className={"text-xl text-[#444141FF] font-semibold"}>Welcome to SohojSell</h3>
                         <p className={"text-gray-500 mt-3"}>Login to manage your account.</p>
                     </div>
 
@@ -63,7 +63,7 @@ const Login = () => {
                     </div>
                 </section>
 
-                <section className={"w-full max-w-sm"}>
+                <section className={"w-full max-w-sm px-6 lg:px-0 md:px-0"}>
                     <div className="card-body p-0">
                         <div className="form-control">
                             <label className="label">
@@ -93,7 +93,7 @@ const Login = () => {
                             </label>
                         </div>
                     </div>
-                    <div className="form-control mt-6">
+                    <div className="form-control mt-6 ">
                         <button onClick={onLogin} className="btn btn-primary text-base-100">Login</button>
                     </div>
                     <div className={"flex items-center justify-center  flex-col mt-8 gap-2"}>

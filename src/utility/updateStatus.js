@@ -15,8 +15,5 @@ export function updateStatus(id,status){
                 return res ;
             })
         }
-         else{
-             return false;
-         }
     })
 }
